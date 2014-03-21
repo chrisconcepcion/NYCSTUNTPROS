@@ -13,3 +13,46 @@
 
  *= require_tree .
  */
+
+#footer{
+    	height: 90px;
+    	position: fixed;
+    	bottom: 0px;
+    	left: 0px;
+    	line-height: 90px;
+    	color: #aaa;
+    	text-align: center;
+    	width: 100%;
+    	background-color: #3d3d3d;
+}
+
+.center {
+	width: 238px;
+	margin: 0 auto;
+	display: inline-block;
+	position: absolute;
+   	left: 50%;
+   	margin-left: -119px;
+   	margin-right: -119px;
+
+   	
+}
+
+.floatRight {
+	display: inline-block;
+	float: right;
+	list-style-type: none;
+	margin-right: 10em;	
+}
+
+.floatRight li {
+	margin-left: 20px;
+	font-size: 0.8em;
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+.tinyMargin {
+	margin-right: 5px;
+	display: inline-block;
+}

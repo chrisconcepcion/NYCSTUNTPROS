@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'foundation-rails'
 gem 'bcrypt'
+gem 'bcrypt-ruby', '~> 3.1.2'
 
 
 group :development, :test do
@@ -38,11 +39,12 @@ end
 
 group :test do
 	gem 'shoulda-matchers'
-gem "faker", "~> 1.1.2"
-gem "capybara", "~> 2.1.0"
-gem "database_cleaner", "~> 1.0.1"
-gem "launchy", "~> 2.3.0"
-gem "selenium-webdriver", "~> 2.35.1"
+	gem "faker"
+	gem "capybara", "~> 2.1.0"
+	gem "database_cleaner", "~> 1.0.1"
+	gem "launchy", "~> 2.3.0"
+	gem "selenium-webdriver", "~> 2.35.1"
+	gem 'fabrication'
 end
 
 group :doc do

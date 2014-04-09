@@ -16,9 +16,7 @@
 
 #footer{
     	height: 90px;
-    	position: fixed;
-    	bottom: 0px;
-    	left: 0px;
+    	
     	line-height: 90px;
     	color: #aaa;
     	text-align: center;
@@ -43,14 +41,16 @@
 	float: right;
 	list-style-type: none;
 	margin-right: 10em;	
+	margin-bottom: 0;
 }
 
 .floatRight li {
 	margin-left: 20px;
 	font-size: 0.8em;
 	margin-top: 8px;
-	margin-bottom: 8px;
+	margin-bottom: 6px;
 }
+
 
 .tinyMargin {
 	margin-right: 5px;

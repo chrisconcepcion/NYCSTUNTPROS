@@ -9,7 +9,7 @@ describe SessionsController do
         let(:user) { Fabricate(:user) }
         it "signs in a user" do
             post :create, email: user.email, password: user.password
-            expect(session[:user_id]).to eq user.id
+            expect(cookies[:auth_token]).to eq user.auth_token
         end
 
         it "redirects to home" do

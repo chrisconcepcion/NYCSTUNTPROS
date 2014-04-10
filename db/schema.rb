@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140410164540) do
+ActiveRecord::Schema.define(version: 20140410213113) do
 
   create_table "contacts", force: true do |t|
     t.integer "profile_id"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20140410164540) do
     t.string "middle_name"
     t.string "last_name"
     t.string "roles"
+    t.string "auth_token"
   end
 
   create_table "wardrobes", force: true do |t|

@@ -54,5 +54,11 @@ StuntRails::Application.routes.draw do
   #     resources :products
   #   end
 
+  root 'sessions#index'
   get 'register', to: 'users#new'
+  resources :users, only: [:create]
+  get 'login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy'
+
 end

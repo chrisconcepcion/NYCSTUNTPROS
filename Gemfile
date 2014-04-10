@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.3'
-
+gem 'pry'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
@@ -27,6 +27,7 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+gem 'simple_form'
 gem 'foundation-rails'
 gem 'bcrypt'
 gem 'bcrypt-ruby', '~> 3.1.2'

@@ -1,27 +1,21 @@
 
-<div class="row">
+<div class="row panel big-top-margin">
   <div class="large-12 columns">
     <h3>Create Your Account</h3>
+    <hr />
   </div>
-</div>
-
-<div class="row">
+<%= simple_form_for @user do |f| %>
   <div class="large-6 columns">
-    <label>Email
-      <input type="text" />
-    </label>
-    <label>Password
-      <input type="text" />
-    </label>
-    <label>First Name
-      <input type="text"  />
-    </label>
-    <label>Last Name
-      <input type="text"  />
-    </label>
-    <a href="#" class="button [radius round]">Sign Up</a>
+      <%= f.input :email %>
+      <%= f.input :password, label: "* Password" %>
+      <%= f.input :first_name %>
+      <%= f.input :last_name %>
+      <%= f.input :gender, label: "* Gender", :as => :radio_buttons, collection: [["Male", "male"],["Female", "female"]], :item_wrapper_class => 'inline' %>
+ 
+    <%= f.submit  "Sign Up", class:"button [radius round] floatRight"%>
   </div>
-    
+  <div class="large-6 large-offset-6 columns"></div>
+    <% end %>
 </div>
 
 

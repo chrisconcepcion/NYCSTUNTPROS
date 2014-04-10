@@ -55,4 +55,7 @@ StuntRails::Application.routes.draw do
   #   end
 
   get 'register', to: 'users#new'
+  resources :users, only: [:create]
+    
+ 
 end

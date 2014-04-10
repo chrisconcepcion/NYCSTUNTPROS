@@ -10,27 +10,27 @@ describe UsersController do
 	end
     describe "POST create" do
         context "when user fields are valid" do
-            it "calls method create_profile" do
-                expect_any_instance_of(User).to receive(:create_profile)
+            it "creates a user" do
                 post :create, user: Fabricate.attributes_for(:user)
-            end
-            it "redirects to /" do
-               post :create, user: Fabricate.attributes_for(:user)
-                expect(response).to redirect_to "/"
+                expect(User.count).to eq 1
             end
             
-            it "sends a welcome email"
-                
-                
+            it "calls method sign_up on SignUp" do
+				SignUp.any_instance.should_receive(:sign_up)
+                post :create, user: Fabricate.attributes_for(:user)
+            end 
+            it "redirects to /" do
+               post :create, user: Fabricate.attributes_for(:user)
+                expect(response).to redirect_to root_path
+            end
             it "displays a flash notice" do
                 post :create, user: Fabricate.attributes_for(:user)
                 expect(flash[:notice]).to eq "Thanks for signing up! Now sign in with your credentials."
             end
-            
         end
         context "when user field are invalid" do
-            it "doesn't call method create_profile" do
-                expect_any_instance_of(User).to_not receive(:create_profile)
+            it "doesn't call method signup service on SignUp" do
+                SignUp.any_instance.should_not_receive(:sign_up)
                 post :create, user: Fabricate.attributes_for(:invalid_user)
             end
             

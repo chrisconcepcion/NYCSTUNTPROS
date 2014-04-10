@@ -23,8 +23,12 @@
   <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
-      <li class="active"><a href="#">Login</a></li>
-      <li><a href="#">Register</a></li>
+      <% if logged_in? %>
+        <li><a href="logout">logout</a></li>
+      <% else %>
+        <li class="active"><a href="login">Login</a></li>
+        <li><a href="register">Register</a></li>
+      <% end %>
     </ul>
 
     <!-- Left Nav Section -->
@@ -51,7 +55,19 @@
     </ul>
   </section>
 </nav>
+    <% if flash[:error] %>
+  <%= content_tag :div, :id => "flash_name", :class => "alert-box error" do %>
+    <%= flash[:error] %>
+    <a class="close">x</a>
+  <% end %>
+<% end %>
 
+<% if flash[:notice] %>
+  <%= content_tag :div, :id => "flash_name", :class => "alert-box success" do %>
+    <%= flash[:notice] %>
+    <a class="close">x</a>
+  <% end %>
+<% end %>
     <%= yield %>
     <%= javascript_include_tag "application" %>
     <div id="footer">

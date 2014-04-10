@@ -8,9 +8,10 @@
   <div class="large-6 columns">
       <%= f.input :email %>
       <%= f.input :password, label: "* Password" %>
-      <%= f.input :first_name %>
-      <%= f.input :last_name %>
+      <%= f.input :first_name, label: "First Name" %>
+      <%= f.input :last_name, label: "Last Name" %>
       <%= f.input :gender, label: "* Gender", :as => :radio_buttons, collection: [["Male", "male"],["Female", "female"]], :item_wrapper_class => 'inline' %>
+      <%= f.input :roles, label: "* Roles", :as => :radio_buttons, collection: [["Stunt Actor", "actor"],["Stunt Coordinator", "coordinator"]], :item_wrapper_class => 'inline' %>
  
     <%= f.submit  "Sign Up", class:"button [radius round] floatRight"%>
   </div>

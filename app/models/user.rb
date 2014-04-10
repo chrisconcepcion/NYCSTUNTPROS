@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 	validates :password, length: { minimum: 6 }
 	validates :email, uniqueness: true, presence: true
     validates :gender, :inclusion => %w(male female)
+    validates :roles, :inclusion => %w(actor coordinator)
     
     def create_profile
         self.create_profile!

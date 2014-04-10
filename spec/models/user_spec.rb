@@ -5,6 +5,7 @@ describe User do
 	it { should validate_uniqueness_of(:email) } 
 	it { should ensure_length_of(:password).is_at_least(6) }
     it { should ensure_inclusion_of(:gender).in_array(%w[male female]) }
+    it { should ensure_inclusion_of(:roles).in_array(%w[actor coordinator]) }
     it { should have_one(:profile) }
     
     describe "#create_profile" do

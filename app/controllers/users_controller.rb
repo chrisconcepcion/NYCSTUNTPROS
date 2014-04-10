@@ -7,8 +7,8 @@ class UsersController < ApplicationController
     def create
         @user = User.create(user_params)
         if @user.save
-            @user.create_profile
-            redirect_to "/"
+            SignUp.new(@user).sign_up
+            redirect_to root_path
             flash[:notice] = "Thanks for signing up! Now sign in with your credentials."
         else
             render :new
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
 private
     def user_params
-        params.require(:user).permit(:email, :password, :first_name, :middle_name, :last_name, :gender)
+        params.require(:user).permit(:email, :password, :first_name, :middle_name, :last_name, :gender, :roles)
     end
     
 end

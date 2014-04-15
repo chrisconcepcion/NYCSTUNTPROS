@@ -25,4 +25,11 @@ describe User do
             expect(user.profile.employment).to_not eq nil
         end
     end
+    
+    describe "#generate_token" do
+        let(:user) { Fabricate(:user, reset_password_token: nil) }
+        it "creates a random token for a column" do
+            expect(user.generate_token(:reset_password_token)).to_not eq nil
+        end
+    end
 end

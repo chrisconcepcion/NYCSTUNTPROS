@@ -60,5 +60,10 @@ StuntRails::Application.routes.draw do
   get 'login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
-
+  get '/reset_password', to: "reset_password#new"
+  resources :reset_password, only: [:create]
+  get "/update_password/:id", to: "update_password#new", as: "update_password"
+  resources :update_password, only: [:create]
+  get "/invalid_token", to: "invalid_token#index"
+	get "/reset_password_confirmation", to: "reset_password_confirmation#index"
 end

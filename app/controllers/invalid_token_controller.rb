@@ -1,0 +1,3 @@
+class InvalidTokenController < ApplicationController
+	
+end

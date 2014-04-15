@@ -14,7 +14,12 @@
     <%= submit_tag 'Login' %>
     <%= check_box_tag :remember_me, 1, params[:remember_me] %>
     <%= label_tag :remember_me %>
+		<% end %>
+<form action="/reset_password">
+		<input type="submit" value="Forgot Password?">
+	</form>
   </div>
   <div class="large-6 large-offset-6 columns"></div>
-    <% end %>
+    
+	
 </div>

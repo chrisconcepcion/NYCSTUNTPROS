@@ -6,12 +6,10 @@ class User < ActiveRecord::Base
 	validates :email, uniqueness: true, presence: true
     validates :gender, :inclusion => %w(male female)
     validates :roles, :inclusion => %w(actor coordinator)
-    before_create { generate_token(:auth_token) }
+    after_create { generate_token(:auth_token) }
 
   def generate_token(column)
-    begin
-      self[column] = SecureRandom.urlsafe_base64
-    end while User.exists?(column => self[column])
+      self.update_attribute(column, SecureRandom.urlsafe_base64)
   end
 
     def create_profile

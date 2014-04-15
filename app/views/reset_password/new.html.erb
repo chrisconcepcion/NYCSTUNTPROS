@@ -1,0 +1,15 @@
+<div class="row panel big-top-margin">
+  <div class="large-12 columns">
+    <h3>Enter Email to Reset Password</h3>
+    <hr />
+  </div>
+  <div class="large-6 columns">
+      <%= form_tag '/reset_password', method: 'post' do  %>
+	<%= label_tag :email %>
+	<%= text_field_tag :email %>
+    </br>
+    <%= submit_tag "Submit" %>
+    <% end %>
+  </div>
+  <div class="large-6 large-offset-6 columns"></div>
+</div>

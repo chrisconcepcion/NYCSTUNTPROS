@@ -1,4 +1,8 @@
 StuntRails::Application.routes.draw do
+  
+  resources :stunt_profiles
+  get '/stunt_profiles/:id', to: 'stunt_profiles#show', as: 'profile'  
+  get '/stunt_profiles/:id/edit', to: 'stunt_profiles#edit', as: 'edit_profile'  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,300 @@
+<%= simple_form_for(@stunt_profile) do |f| %>
+<p id="notice"><%= notice %></p>
+<div class="row panel"> 
+
+  <div class="large-3 columns">
+  <p>
+      <ul class="clearing-thumbs" data-clearing>
+        <li><%= link_to image_tag(@stunt_profile.profile_pictures.first.picture.url(:thumb), :class => "th"), @stunt_profile.profile_pictures.first.picture.url %> </li>
+      </ul>
+      
+      <%#=image_tag @stunt_profile.profile_pictures.first.picture.url %>
+      <%#= link_to image_tag(@stunt_profile.profile_pictures.first.picture.url(:thumb)), samples_path(product) %>
+    </p>
+  </div>
+  
+  <div class="large-6 columns">
+    <h3><%= @stunt_profile.user.first_name%> <%= @stunt_profile.user.last_name %> Profile</h3>
+    <h5><%= @stunt_profile.user.roles%></h5>
+    <hr />    
+    <p>
+      <strong>Gender:</strong>
+      <%= @stunt_profile.user.gender %>
+    </p>
+    <p>
+      <strong>Role:</strong>
+      <%= @stunt_profile.user.roles %>
+    </p>
+    <p>
+      <strong>Age:</strong>
+      <%= @stunt_profile.age %>
+    </p>    
+
+    <p>
+      <strong>Occupation:</strong>
+      <%= @stunt_profile.occupation %>
+    </p>
+
+    <p>
+      <strong>Height:</strong>
+      <%= @stunt_profile.height %>
+    </p>
+
+    <p>
+      <strong>Weight:</strong>
+      <%= @stunt_profile.weight %>
+    </p>
+
+    <p>
+      <strong>Physique:</strong>
+      <%= @stunt_profile.physique %>
+    </p>
+
+    <p>
+      <strong>Ethnicity:</strong>
+      <%= @stunt_profile.ethnicity %>
+    </p>
+
+    <p>
+      <strong>Eye color:</strong>
+      <%= @stunt_profile.eye_color %>
+    </p>
+
+    <p>
+      <strong>Hair color:</strong>
+      <%= @stunt_profile.hair_color %>
+    </p>
+
+    <p>
+      <strong>Hair length:</strong>
+      <%= @stunt_profile.hair_length %>
+    </p>
+
+    <p>
+      <strong>Neck size:</strong>
+      <%= @stunt_profile.neck_size %>
+    </p>
+
+    <p>
+      <strong>Sleeve size:</strong>
+      <%= @stunt_profile.sleeve_size %>
+    </p>
+
+    <p>
+      <strong>Suit size:</strong>
+      <%= @stunt_profile.suit_size %>
+    </p>
+
+    <p>
+      <strong>Waist:</strong>
+      <%= @stunt_profile.waist %>
+    </p>
+
+    <p>
+      <strong>Pant length:</strong>
+      <%= @stunt_profile.pant_length %>
+    </p>
+
+    <p>
+      <strong>Shoe size:</strong>
+      <%= @stunt_profile.shoe_size %>
+    </p>
+
+    <p>
+      <strong>Hat size:</strong>
+      <%= @stunt_profile.hat_size %>
+    </p>
+
+    <p>
+      <strong>Glove size:</strong>
+      <%= @stunt_profile.glove_size %>
+    </p>     
+
+    <h4>Credentials</h4>
+    <hr/>
+
+    <h5>Film</h5>
+    <table width="100%">    
+        <thead>
+            <tr>
+              <th>Project Title</th>
+              <th>Role</th>
+              <th>Company</th>
+            </tr>
+        </thead>
+        <tbody>
+          <% @stunt_profile.films.each do |film| %>
+            <%= render partial:"credit_fields_readonly", locals: {credit: film} %>          
+          <% end %>
+        </tbody>
+    </table>
+
+    <h5>Television</h5>
+    <table width="100%">    
+        <thead>
+            <tr>
+              <th>Project Title</th>
+              <th>Role</th>
+              <th>Company</th>
+            </tr>
+        </thead>
+        <tbody>
+          <% @stunt_profile.televisions.each do |television| %>
+            <%= render partial:"credit_fields_readonly", locals: {credit: television} %>          
+          <% end %>
+        </tbody>
+    </table>
+
+    <h5>Commercial</h5>
+    <table width="100%">    
+        <thead>
+            <tr>
+              <th>Project Title</th>
+              <th>Role</th>
+              <th>Company</th>
+            </tr>
+        </thead>
+        <tbody>
+          <% @stunt_profile.commercials.each do |commercial| %>
+            <%= render partial:"credit_fields_readonly", locals: {credit: commercial} %>          
+          <% end %>
+        </tbody>
+    </table>
+
+    <h5>Music Videos</h5>
+    <table width="100%">    
+        <thead>
+            <tr>
+              <th>Project Title</th>
+              <th>Role</th>
+              <th>Company</th>
+            </tr>
+        </thead>
+        <tbody>
+          <% @stunt_profile.music_videos.each do |music_video| %>
+            <%= render partial:"credit_fields_readonly", locals: {credit: music_video} %> 
+          <% end %>
+        </tbody>
+    </table>
+
+    <h5>Video Games</h5>
+    <table width="100%">    
+        <thead>
+            <tr>
+              <th>Project Title</th>
+              <th>Role</th>
+              <th>Company</th>
+            </tr>
+        </thead>
+        <tbody>
+          <% @stunt_profile.video_games.each do |video_game| %>
+            <%= render partial:"credit_fields_readonly", locals: {credit: video_game} %>
+          <% end %>
+        </tbody>
+    </table>
+
+    <h5>Industrial</h5>
+    <table width="100%">    
+        <thead>
+            <tr>
+              <th>Project Title</th>
+              <th>Role</th>
+              <th>Company</th>
+            </tr>
+        </thead>
+        <tbody>
+          <% @stunt_profile.industrials.each do |industrial| %>
+            <%= render partial:"credit_fields_readonly", locals: {credit: industrial} %>          
+          <% end %>
+        </tbody>
+    </table>
+
+    <h4>Skills</h4>
+    <hr/>
+    <p>
+      <%= @stunt_profile.skills %>
+    </p>
+
+    <h4>Education</h4>
+    <hr/>
+    <p>
+      <%= @stunt_profile.education %>
+    </p>
+
+    <h4>Training</h4>
+    <hr/>
+    <p>    
+      <%= @stunt_profile.training %>
+    </p>
+
+    <h4>Employement Details</h4>
+    <hr/>
+    <p>
+      <strong>Work history:</strong>
+      <%= @stunt_profile.work_history %>
+    </p>
+
+    <p>
+      <strong>Job categories:</strong>
+      <%= @stunt_profile.job_categories %>
+    </p>    
+
+    <p>
+      <strong>Unpaid work:</strong>
+      <%= @stunt_profile.unpaid_work %>
+    </p>
+
+    <p>
+      <strong>Authorized to work:</strong>
+      <%= @stunt_profile.authorized_to_work %>
+    </p>
+
+    <p>
+      <strong>Primary citizenship:</strong>
+      <%= @stunt_profile.primary_citizenship %>
+    </p>
+
+    <p>
+      <strong>Valid passport:</strong>
+      <%= @stunt_profile.valid_passport %>
+    </p>
+    <p>
+      <strong>Post job titles:</strong>
+      <%= @stunt_profile.post_job_titles %>
+    </p>
+
+
+  </div>
+
+  <div class="large-3 columns">
+    <br />
+    <br />
+    <br />
+    <fieldset>
+      <legend>Contact Information</legend>
+
+      Address: <%= @stunt_profile.address %>, <%= @stunt_profile.city %>, <%= @stunt_profile.state %>, <%= @stunt_profile.zip_code %>
+      <br />
+      Phone Number: <%= @stunt_profile.phone_number %> 
+      <br />
+      Email: <%= @stunt_profile.user.email %>
+      <br />
+      Website: <%= @stunt_profile.website %>
+    </fieldset>
+  </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<%#= link_to 'Edit', edit_stunt_profile_path(@stunt_profile) %> |
+<%#= link_to 'Back', stunt_profiles_path %>
+
+<% end %>

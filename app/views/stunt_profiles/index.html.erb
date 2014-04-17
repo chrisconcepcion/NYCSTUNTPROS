@@ -1,0 +1,103 @@
+<div class="row panel">
+  <div class="large-12 columns">
+    <h1>Search Stunt Profiles</h1>
+    <%= form_tag(stunt_profiles_path, :method => "get", id: "search-form") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search Users" %>
+      <%= submit_tag "Search", :name => nil %>
+    <% end %>
+  </div>
+
+</div>
+
+<!--
+<h1>Listing stunt_profiles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Age</th>
+      <th>Occupation</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Physique</th>
+      <th>Ethnicity</th>
+      <th>Eye color</th>
+      <th>Hair color</th>
+      <th>Hair length</th>
+      <th>Neck size</th>
+      <th>Sleeve size</th>
+      <th>Suit size</th>
+      <th>Waist</th>
+      <th>Pant length</th>
+      <th>Shoe size</th>
+      <th>Hat size</th>
+      <th>Glove size</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zip code</th>
+      <th>Phone number</th>
+      <th>Website</th>
+      <th>Skills</th>
+      <th>Education</th>
+      <th>Training</th>
+      <th>Work history</th>
+      <th>Job categories</th>
+      <th>Post job titles</th>
+      <th>Unpaid work</th>
+      <th>Authorized to work</th>
+      <th>Primary citizenship</th>
+      <th>Valid passport</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stunt_profiles.each do |stunt_profile| %>
+      <tr>
+        <td><%= stunt_profile.user_id %></td>
+        <td><%= stunt_profile.age %></td>
+        <td><%= stunt_profile.occupation %></td>
+        <td><%= stunt_profile.height %></td>
+        <td><%= stunt_profile.weight %></td>
+        <td><%= stunt_profile.physique %></td>
+        <td><%= stunt_profile.ethnicity %></td>
+        <td><%= stunt_profile.eye_color %></td>
+        <td><%= stunt_profile.hair_color %></td>
+        <td><%= stunt_profile.hair_length %></td>
+        <td><%= stunt_profile.neck_size %></td>
+        <td><%= stunt_profile.sleeve_size %></td>
+        <td><%= stunt_profile.suit_size %></td>
+        <td><%= stunt_profile.waist %></td>
+        <td><%= stunt_profile.pant_length %></td>
+        <td><%= stunt_profile.shoe_size %></td>
+        <td><%= stunt_profile.hat_size %></td>
+        <td><%= stunt_profile.glove_size %></td>
+        <td><%= stunt_profile.address %></td>
+        <td><%= stunt_profile.city %></td>
+        <td><%= stunt_profile.state %></td>
+        <td><%= stunt_profile.zip_code %></td>
+        <td><%= stunt_profile.phone_number %></td>
+        <td><%= stunt_profile.website %></td>
+        <td><%= stunt_profile.skills %></td>
+        <td><%= stunt_profile.education %></td>
+        <td><%= stunt_profile.training %></td>
+        <td><%= stunt_profile.work_history %></td>
+        <td><%= stunt_profile.job_categories %></td>
+        <td><%= stunt_profile.post_job_titles %></td>
+        <td><%= stunt_profile.unpaid_work %></td>
+        <td><%= stunt_profile.authorized_to_work %></td>
+        <td><%= stunt_profile.primary_citizenship %></td>
+        <td><%= stunt_profile.valid_passport %></td>
+        <td><%= link_to 'Show', stunt_profile %></td>
+        <td><%= link_to 'Edit', edit_stunt_profile_path(stunt_profile) %></td>
+        <td><%= link_to 'Destroy', stunt_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+-->

@@ -24,7 +24,9 @@
     <!-- Right Nav Section -->
     <ul class="right">
       <% if current_user %>
-        <li><a href="logout">logout</a></li>
+        <li><a href="/logout">logout</a></li>
+        <li><%= link_to "View Profile", profile_path(current_user.stunt_profile) %></li>
+        <li><%= link_to "Edit Profile", edit_profile_path(current_user.stunt_profile) %></li>
       <% else %>
         <li class="active"><a href="login">Login</a></li>
         <li><a href="register">Register</a></li>

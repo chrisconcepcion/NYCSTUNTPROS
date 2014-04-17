@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 	has_secure_password validations: false
     has_one :profile
+    has_one :stunt_profile
 
 	validates :password, length: { minimum: 6 }
 	validates :email, uniqueness: true, presence: true
@@ -20,5 +21,7 @@ class User < ActiveRecord::Base
         user_profile.create_wardrobe!
         user_profile.create_contact!
         user_profile.create_employment!
+
+        self.create_stunt_profile!
     end
 end

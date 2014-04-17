@@ -1,0 +1,204 @@
+<%= simple_form_for(@stunt_profile, :html => { :multipart => true }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <h4>General Information</h4>
+    <hr />
+    <%= f.association @stunt_profile.user do |u| %>
+       <%= u.input :first_name, :readonly => true %>
+       <%= u.input :last_name, :readonly => true %>
+       <%= u.input :gender, :readonly => true %>
+       <%= u.input :roles, :readonly => true %>         
+    <% end %>
+
+    <%= f.association :profile_pictures do |p| %>
+        <% if !@stunt_profile.profile_pictures.first.picture_file_name.nil? %>
+            <label>Existing Profile Picture</label>
+            <ul class="clearing-thumbs" data-clearing>
+                <li><%= link_to image_tag(@stunt_profile.profile_pictures.first.picture.url(:thumb), :class => "th"), @stunt_profile.profile_pictures.first.picture.url %> </li>
+            </ul>
+        <% end %>
+        <%= p.input :picture, as: :file, label: "Change Profile Picture"%>
+    <% end %>
+
+    <%#= f.input :user_id %>
+    <%= f.input :age, collection: 18..60, prompt: "Select your age" %>
+    <%= f.input :occupation %>
+    <%= f.input :height %>
+    <%= f.input :weight %>
+    <%= f.input :physique, collection: physique %>
+    <%= f.input :ethnicity, collection: ethnicity %>
+    <%= f.input :eye_color, collection: eye_color %>
+    <%= f.input :hair_color, collection: hair_color %>
+    <%= f.input :hair_length, collection: hair_length %>
+    <%= f.input :neck_size %>
+    <%= f.input :sleeve_size %>
+    <%= f.input :suit_size %>
+    <%= f.input :waist %>
+    <%= f.input :pant_length %>
+    <%= f.input :shoe_size %>
+    <%= f.input :hat_size %>
+    <%= f.input :glove_size %>
+
+    <h4>Contact Information</h4>
+    <hr />
+    <%= f.input :address %>
+    <%= f.input :city %>
+    <%= f.input :state, collection: us_states %>
+    <%= f.input :zip_code %>
+    <%= f.input :phone_number %>
+    <%= f.input :website %>
+    
+    <h4>Add a new Credit</h4>
+    <hr/>
+
+    <h5>Film</h5>
+    <table width="100%">    
+        <thead>
+            <tr>
+              <th>Project Title</th>
+              <th>Role</th>
+              <th>Company</th>
+              <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <%= f.fields_for :films do |builder| %>
+                <%= render "credit_fields", :ff => builder %>
+            <% end %>
+            <tr>
+                <td colspan="4"><%= link_to_add_fields "Add Film Credit", f, :films %></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h5>Television</h5>
+    <table width="100%">    
+        <thead>
+            <tr>
+              <th>Project Title</th>
+              <th>Role</th>
+              <th>Company</th>
+              <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <%= f.fields_for :televisions do |builder| %>
+                <%= render "credit_fields", :ff => builder %>
+            <% end %>
+            <tr>
+                <td colspan="4"><%= link_to_add_fields "Add Television Credit", f, :televisions %></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h5>Commercial</h5>
+    <table width="100%">    
+        <thead>
+            <tr>
+              <th>Project Title</th>
+              <th>Role</th>
+              <th>Company</th>
+              <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <%= f.fields_for :commercials do |builder| %>
+                <%= render "credit_fields", :ff => builder %>
+            <% end %>
+            <tr>
+                <td colspan="4"><%= link_to_add_fields "Add Commercial Credit", f, :commercials %></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h5>Music Videos</h5>
+    <table width="100%">    
+        <thead>
+            <tr>
+              <th>Project Title</th>
+              <th>Role</th>
+              <th>Company</th>
+              <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <%= f.fields_for :music_videos do |builder| %>
+                <%= render "credit_fields", :ff => builder %>
+            <% end %>
+            <tr>
+                <td colspan="4"><%= link_to_add_fields "Add Music Video Credit", f, :music_videos %></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h5>Video Games</h5>
+    <table width="100%">    
+        <thead>
+            <tr>
+              <th>Project Title</th>
+              <th>Role</th>
+              <th>Company</th>
+              <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <%= f.fields_for :video_games do |builder| %>
+                <%= render "credit_fields", :ff => builder %>
+            <% end %>
+            <tr>
+                <td colspan="4"><%= link_to_add_fields "Add Video Game Credit", f, :video_games %></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h5>Industrial</h5>
+    <table width="100%">    
+        <thead>
+            <tr>
+              <th>Project Title</th>
+              <th>Role</th>
+              <th>Company</th>
+              <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <%= f.fields_for :industrials do |builder| %>
+                <%= render "credit_fields", :ff => builder %>
+            <% end %>
+            <tr>
+                <td colspan="4"><%= link_to_add_fields "Add Industrial Credit", f, :industrials %></td>
+            </tr>
+        </tbody>
+    </table>    
+
+    
+    <h4>Skills</h4>
+    <hr />
+    <%= f.input :skills, label: false, input_html: {rows: 5} %>
+    <h4>Education</h4>
+    <hr />
+    <%= f.input :education, label: false, input_html: {rows: 5} %>
+    <h4>Training</h4>
+    <hr />
+    <%= f.input :training, label: false, input_html: {rows: 5} %>
+    <h4>Employement Details</h4>
+    <hr />
+    <%= f.input :work_history, input_html: {rows: 5} %>
+    <%= f.input :job_categories, input_html: {rows: 5} %>
+
+    
+    <%= f.input :unpaid_work, collection: yes_no %>
+    <%= f.input :authorized_to_work, collection: yes_no %>
+    <%= f.input :primary_citizenship do %>
+        <%= f.country_select :primary_citizenship, {object: f.object, prompt: '-- Please Select --'} %>
+    <% end %>
+    <%= f.input :valid_passport, collection: yes_no %>
+
+    <%= f.input :post_job_titles, input_html: {rows: 5} %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

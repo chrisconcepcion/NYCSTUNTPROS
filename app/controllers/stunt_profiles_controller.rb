@@ -4,7 +4,15 @@ class StuntProfilesController < ApplicationController
   # GET /stunt_profiles
   # GET /stunt_profiles.json
   def index
-    @stunt_profiles = StuntProfile.search(params)
+    if params[:coordinators]
+      @stunt_profiles = StuntProfile.search_coordinators
+    elsif params[:men]
+      @stunt_profiles = StuntProfile.search_men
+    elsif params[:women]        
+      @stunt_profiles = StuntProfile.search_women
+    else
+      @stunt_profiles = StuntProfile.search(params)
+    end    
   end  
 
   # GET /stunt_profiles/1

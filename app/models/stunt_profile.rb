@@ -99,27 +99,19 @@ class StuntProfile < ActiveRecord::Base
 
 	    wheres.insert(0, conditions)
 
-	    where(wheres)
+	    where(wheres)	    
+	end
 
+	def self.search_coordinators
+		self.joins(:user).where(users: {roles: "coordinator"})
+	end
 
-	    # 
-	    # if params[:min_age].present? && params[:max_age].present?
-	    #   where("age > ? AND age < ?", "#{params[:min_age]}", "#{params[:max_age]}")
-	    # elsif params[:min_age].present? && !params[:max_age].present?
-	    #   where("age > ?", "#{params[:min_age]}")	
-	    # elsif !params[:min_age].present? && params[:max_age].present?
-	    #   where("age < ?", "#{params[:max_age]}")
-	    # end
+	def self.search_men
+		self.joins(:user).where(users: {gender: "male", roles: "actor"})
+	end
 
-	    # if params[:min_height].present? && params[:max_height].present?
-	    #   where("height > ? AND height < ?", "#{params[:min_height]}", "#{params[:max_height]}")
-	    # elsif params[:min_height].present? && !params[:max_height].present?
-	    #   where("height > ?", "#{params[:min_height]}")	
-	    # elsif !params[:min_height].present? && params[:max_height].present?
-	    #   where("height < ?", "#{params[:max_height]}")
-	    # end
-	    # 
-
+	def self.search_women
+		self.joins(:user).where(users: {gender: "female", roles: "actor"})
 	end
 
 end

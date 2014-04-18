@@ -1,4 +1,5 @@
 class ResetPasswordController < ApplicationController
+before_action :already_authenticated, only: [:new, :create]
   def create
     user = User.find_by(email: params[:email])
     if user 

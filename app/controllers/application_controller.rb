@@ -4,7 +4,35 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user
     
-    def current_user
-      @current_user ||= User.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token]
-    end
+  def current_user
+    @current_user ||= User.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token]
+  end
+  
+	def already_authenticated
+  	redirect_to root_path if current_user
+  end
+
+  def require_authentication
+  	if current_user == nil
+			flash[:notice] = "Only authenticated users can preform this action, please sign in."
+			redirect_to sign_in_path
+		end
+	end
+	
+	def require_password_reset_token
+		user = User.find_by_reset_password_token params[:reset_password_token]
+		redirect_to invalid_token_path unless user && user.reset_password_sent_at
+  end
+	
+	def require_password_reset_sent_at_less_than_2_hours_ago
+		user = User.find_by_reset_password_token params[:reset_password_token]
+		if user && user.reset_password_sent_at
+			if user.reset_password_sent_at < 2.hours.ago
+    		redirect_to reset_password_path
+				flash[:error] = "Reset password token has expired. Please go request to reset your password again and complete the process within 2 hours."
+			end
+		else 
+			redirect_to invalid_token_path
+		end
+  end
 end

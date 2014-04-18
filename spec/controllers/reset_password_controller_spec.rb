@@ -1,7 +1,16 @@
 require 'spec_helper'
 
 describe ResetPasswordController do
+	describe "GET new" do
+		it_behaves_like "when user is authenticated" do
+			let(:action) { get :new }
+		end
+	end
   describe "POST create" do
+		it_behaves_like "when user is authenticated" do
+			let(:action) { post :create }
+		end
+		
     context "when email matches a user" do
       let(:user) { Fabricate(:user) }
       

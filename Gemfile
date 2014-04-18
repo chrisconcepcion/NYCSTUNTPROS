@@ -47,6 +47,7 @@ group :test do
 	gem 'shoulda-matchers'
 	gem "faker"
 	gem "capybara", "~> 2.1.0"
+	gem 'capybara-email'
 	gem "database_cleaner", "~> 1.0.1"
 	gem "launchy", "~> 2.3.0"
 	gem "selenium-webdriver", "~> 2.38.0"

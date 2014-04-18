@@ -1,5 +1,5 @@
 Fabricator(:user) do
-	password { Faker::Internet.email }
+	password { "lololol" }
 	email { Faker::Internet.email }
     gender { %w(male female).sample }
     roles { %w(actor coordinator).sample }

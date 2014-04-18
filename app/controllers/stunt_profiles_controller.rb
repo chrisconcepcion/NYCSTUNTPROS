@@ -4,8 +4,8 @@ class StuntProfilesController < ApplicationController
   # GET /stunt_profiles
   # GET /stunt_profiles.json
   def index
-    @stunt_profiles = StuntProfile.all
-  end
+    @stunt_profiles = StuntProfile.search(params)
+  end  
 
   # GET /stunt_profiles/1
   # GET /stunt_profiles/1.json
@@ -19,7 +19,7 @@ class StuntProfilesController < ApplicationController
 
   # GET /stunt_profiles/1/edit
   def edit
-    if @stunt_profile.profile_pictures.count == 0
+    if @stunt_profile.profile_pictures && @stunt_profile.profile_pictures.count == 0
       @stunt_profile.profile_pictures.create!
     end
   end

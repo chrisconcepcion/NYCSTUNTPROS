@@ -2,14 +2,59 @@
   <div class="large-12 columns">
     <h1>Search Stunt Profiles</h1>
     <%= form_tag(stunt_profiles_path, :method => "get", id: "search-form") do %>
-      <%= text_field_tag :search, params[:search], placeholder: "Search Users" %>
+      
+      <%= label_tag :min_age, "Minimum Age" %>
+      <%= text_field_tag :min_age, params[:min_age], maxlength: 2 %>
+      <%= label_tag :max_age, "Maximum Age" %>
+      <%= text_field_tag :max_age, params[:max_age], maxlength: 2 %>
+
+      <%= label_tag :min_height, "Minimum Height" %>
+      <%= text_field_tag :min_height, params[:min_height], maxlength: 4 %>
+      <%= label_tag :max_height, "Maximum Height" %>
+      <%= text_field_tag :max_height, params[:max_height], maxlength: 4 %>
+
+      <%= label_tag :min_weight, "Minimum Weight" %>
+      <%= text_field_tag :min_weight, params[:min_weight], maxlength: 6 %>
+      <%= label_tag :max_weight, "Maximum Weight" %>
+      <%= text_field_tag :max_weight, params[:max_weight], maxlength: 6 %>
+      
+      <%= label_tag :physique_search, "Physique" %>
+      <%= select_tag "physique_search", options_for_select(physique, params[:physique_search]) %>
+
+      <%= label_tag :ethnicity_search, "Ethnicity" %>
+      <%= select_tag "ethnicity_search", options_for_select(ethnicity, params[:ethnicity_search]) %>
+
+      <%= label_tag :eye_color_search, "Eye Color" %>
+      <%= select_tag "eye_color_search", options_for_select(eye_color, params[:eye_color_search]) %>
+
+      <%= label_tag :hair_color_search, "Hair Color" %>
+      <%= select_tag "hair_color_search", options_for_select(hair_color, params[:hair_color_search]) %>
+
+
       <%= submit_tag "Search", :name => nil %>
     <% end %>
   </div>
-
+</div>
+<div class="row panel">
+  <div class="large-12 columns">    
+    <ul class="small-block-grid-4">      
+        <% @stunt_profiles.each do |stunt_profile| %>        
+            <li>              
+                <%= link_to image_tag(stunt_profile.profile_pictures.first.picture.url(:thumb), :class => "th"), profile_path(stunt_profile) %>
+                <br />
+                <strong><%= stunt_profile.user.first_name %>&nbsp;<%= stunt_profile.user.last_name %> </strong>
+                <br />
+                <%= stunt_profile.address %>
+                <%= stunt_profile.user.email %>
+            </li>
+        <% end %>
+      
+    </ul>
+  </div>
 </div>
 
-<!--
+
+<% if !@stunt_profiles.nil?%>
 <h1>Listing stunt_profiles</h1>
 
 <table>
@@ -99,5 +144,4 @@
     <% end %>
   </tbody>
 </table>
-
--->
+<% end %>

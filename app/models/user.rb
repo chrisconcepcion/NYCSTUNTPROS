@@ -23,5 +23,15 @@ class User < ActiveRecord::Base
         user_profile.create_employment!
 
         self.create_stunt_profile!
+
+        #stunt_profile = self.create_stunt_profile(:validate => false)
+        #stunt_profile = StuntProfile.new
+        #stunt_profile.save(:validate => false)
+        #self.stunt_profile = stunt_profile
+        #stunt_profile.user = self
+        #stunt_profile.save(:validate => false)
+
+
+
     end
 end

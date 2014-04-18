@@ -25,4 +25,23 @@ describe User do
             expect(user.profile.employment).to_not eq nil
         end
     end
+    
+    describe "#generate_token" do
+			describe "on create" do
+				it "creates a auth token on create" do
+						user = User.create( Fabricate.attributes_for(:user) )
+            expect(user.generate_token(:auth_token)).to_not eq nil
+        end
+			end
+  
+			it "creates a random token for a column" do
+						user = Fabricate(:user, reset_password_token: nil)
+            expect(user.generate_token(:reset_password_token)).to_not eq nil
+        end
+			it "doesn't save" do
+					user = Fabricate(:user, reset_password_token: nil)
+				user.generate_token(:reset_password_token)
+					expect(user.reset_password_token_changed?).to eq true
+				end
+    end
 end

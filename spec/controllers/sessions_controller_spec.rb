@@ -2,11 +2,16 @@ require 'spec_helper'
 
 describe SessionsController do
     describe "GET new" do
-        
+    	it_behaves_like "when user is authenticated" do
+				let(:action) { get :new }
+			end
     end
     
     describe "POST create" do
         let(:user) { Fabricate(:user) }
+				it_behaves_like "when user is authenticated" do
+					let(:action) { post :create }
+				end
         it "signs in a user" do
             post :create, email: user.email, password: user.password
             expect(cookies[:auth_token]).to eq user.auth_token

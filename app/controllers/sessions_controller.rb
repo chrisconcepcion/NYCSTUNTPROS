@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-    
+before_action :already_authenticated, only: [:new, :create]
   def create
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       flash[:notice] = "You have successfully logged in!"
       redirect_to root_url
     else
-      flash.now.alert = "Invalid email or password"
+      flash[:error] = "Invalid email or password"
       render "new"
     end
   end

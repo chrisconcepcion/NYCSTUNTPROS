@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 feature 'User registers, logs in and logs out' do
+		
     given (:user) { Fabricate(:user) } 
     scenario "User stumbles upon website and registers" do
         visit root_path
@@ -25,6 +26,4 @@ feature 'User registers, logs in and logs out' do
         click_link "logout"
         expect(page).to have_content "You have successfully logged out."
     end
-    
-    
 end

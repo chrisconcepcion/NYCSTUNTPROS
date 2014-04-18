@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe UsersController do
 	describe "GET new" do
+		it_behaves_like "when user is authenticated" do
+			let(:action) { get :new }
+		end
+		
 		it "sets user variable" do
 			get :new
 			expect(assigns(:user)).to be_new_record
@@ -9,6 +13,9 @@ describe UsersController do
 		end
 	end
     describe "POST create" do
+		it_behaves_like "when user is authenticated" do
+			let(:action) { post :create, user: {} }
+		end
         context "when user fields are valid" do
             it "creates a user" do
                 post :create, user: Fabricate.attributes_for(:user)

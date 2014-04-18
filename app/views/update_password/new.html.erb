@@ -1,0 +1,20 @@
+<div class="row panel big-top-margin">
+  <div class="large-12 columns">
+    <h3>Login</h3>
+    <hr />
+  </div>
+  <div class="large-6 columns">
+      <%= form_tag '/update_password', method: 'post' do  %>
+	
+	<%= label_tag :password %>
+	<%= password_field_tag :password %>
+	<br />
+	<%= label_tag :password_confirmation, "Password Confirmation" %>
+	<%= password_field_tag :password_confirmation %>
+	<%= hidden_field_tag :reset_password_token,  value="#{params[:reset_password_token]}" %>
+    </br>
+    <%= submit_tag 'Update Password' %>
+		<% end %>
+  </div>
+  <div class="large-6 large-offset-6 columns"></div>
+</div>

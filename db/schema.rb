@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140410213113) do
+ActiveRecord::Schema.define(version: 20140414215055) do
 
   create_table "contacts", force: true do |t|
     t.integer "profile_id"
@@ -43,14 +43,16 @@ ActiveRecord::Schema.define(version: 20140410213113) do
   end
 
   create_table "users", force: true do |t|
-    t.string "email"
-    t.string "password_digest"
-    t.string "gender"
-    t.string "first_name"
-    t.string "middle_name"
-    t.string "last_name"
-    t.string "roles"
-    t.string "auth_token"
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "gender"
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.string   "roles"
+    t.string   "auth_token"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
   end
 
   create_table "wardrobes", force: true do |t|

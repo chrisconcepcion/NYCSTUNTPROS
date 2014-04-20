@@ -10,6 +10,6 @@ function add_fields(link, association, content) {
   $(link).parent().parent().before(content.replace(regexp, new_id));
 }
 
-function collapse_accordion() {
-
-}
+//$(document).ready(function () {    
+//	$("#panel1").removeClass("active");
+//});

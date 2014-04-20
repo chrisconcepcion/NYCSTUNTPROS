@@ -1,3 +1,4 @@
+<% javascript 'search_profiles' %>
 <div class="row panel">
   <div class="large-12 columns">    
     <dl class="accordion" data-accordion>
@@ -6,34 +7,206 @@
         <div id="panel1" class="content active">          
           <%= form_tag(stunt_profiles_path, :method => "get", id: "search-form") do %>
 
-            <%= label_tag :min_age, "Minimum Age" %>
-            <%= text_field_tag :min_age, params[:min_age], maxlength: 2 %>
-            <%= label_tag :max_age, "Maximum Age" %>
-            <%= text_field_tag :max_age, params[:max_age], maxlength: 2 %>
+            <div class="row">
+              <div class="small-2 columns">
+                <%= label_tag :first_name_search, "First Name", :class => "right inline" %>
+              </div>
+              <div class="small-4 columns left">
+                <%= text_field_tag :first_name_search, params[:first_name_search], maxlength: 50 %>
+              </div>
+            </div>
 
-            <%= label_tag :min_height, "Minimum Height" %>
-            <%= text_field_tag :min_height, params[:min_height], maxlength: 4 %>
-            <%= label_tag :max_height, "Maximum Height" %>
-            <%= text_field_tag :max_height, params[:max_height], maxlength: 4 %>
+            <div class="row">
+              <div class="small-2 columns">
+                <%= label_tag :last_name_search, "Last Name", :class => "right inline" %>
+              </div>
+              <div class="small-4 columns left">
+                <%= text_field_tag :last_name_search, params[:last_name_search], maxlength: 50 %>
+              </div>
+            </div>
 
-            <%= label_tag :min_weight, "Minimum Weight" %>
-            <%= text_field_tag :min_weight, params[:min_weight], maxlength: 6 %>
-            <%= label_tag :max_weight, "Maximum Weight" %>
-            <%= text_field_tag :max_weight, params[:max_weight], maxlength: 6 %>
+            <div class="row">
+              <div class="small-2 columns">
+                <%= label_tag :min_age, "Age", :class => "right inline" %>
+              </div>
+              <div class="small-2 columns left">
+                <%= text_field_tag :min_age, params[:min_age], maxlength: 2, placeholder: 'Min Age' %>
+              </div>
+              <div class="small-2 columns left">
+                <%= text_field_tag :max_age, params[:max_age], maxlength: 2, placeholder: 'Max Age' %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="small-2 columns">
+                <%= label_tag :min_height, "Height", :class => "right inline" %>
+              </div>
+              <div class="small-2 columns left">                
+                <%= text_field_tag :min_height, params[:min_height], maxlength: 4, placeholder: 'Min Height' %>
+              </div>
+              <div class="small-2 columns left">                
+                <%= text_field_tag :max_height, params[:max_height], maxlength: 4, placeholder: 'Max Height' %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="small-2 columns">
+                <%= label_tag :min_weight, "Weight (Pounds)", :class => "right inline" %>
+              </div>
+              <div class="small-2 columns left">
+                <%= text_field_tag :min_weight, params[:min_weight], maxlength: 6, placeholder: 'Min Weight' %>
+              </div>
+              <div class="small-2 columns left">                
+                <%= text_field_tag :max_weight, params[:max_weight], maxlength: 6, placeholder: 'Max Weight' %>
+              </div>
+            </div>
             
-            <%= label_tag :physique_search, "Physique" %>
-            <%= select_tag "physique_search", options_for_select(physique, params[:physique_search]) %>
+            <div class="row">
+              <div class="small-2 columns">                
+                <%= label_tag :physique_search, "Physique", :class => "right inline" %>
+              </div>
+              <div class="small-4 columns left">
+                <%= select_tag "physique_search", options_for_select(physique, params[:physique_search]) %>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="small-2 columns">                
+                <%= label_tag :ethnicity_search, "Ethnicity", :class => "right inline" %>
+              </div>
+              <div class="small-4 columns left">
+                <%= select_tag "ethnicity_search", options_for_select(ethnicity, params[:ethnicity_search]) %>
+              </div>
+            </div>
 
-            <%= label_tag :ethnicity_search, "Ethnicity" %>
-            <%= select_tag "ethnicity_search", options_for_select(ethnicity, params[:ethnicity_search]) %>
+            <div class="row">
+              <div class="small-2 columns">                
+                <%= label_tag :eye_color_search, "Eye Color", :class => "right inline" %>
+              </div>
+              <div class="small-4 columns left">                
+                <%= select_tag "eye_color_search", options_for_select(eye_color, params[:eye_color_search]) %>
+              </div>
+            </div>
 
-            <%= label_tag :eye_color_search, "Eye Color" %>
-            <%= select_tag "eye_color_search", options_for_select(eye_color, params[:eye_color_search]) %>
+            <div class="row">
+              <div class="small-2 columns">
+                <%= label_tag :hair_color_search, "Hair Color", :class => "right inline" %>
+              </div>
+              <div class="small-4 columns left">                
+                <%= select_tag "hair_color_search", options_for_select(hair_color, params[:hair_color_search]) %>
+              </div>
+            </div>
 
-            <%= label_tag :hair_color_search, "Hair Color" %>
-            <%= select_tag "hair_color_search", options_for_select(hair_color, params[:hair_color_search]) %>
+            <div class="row">
+              <div class="small-2 columns">
+                <%= label_tag :min_hair_length, "Hair Length", :class => "right inline" %>
+              </div>
+              <div class="small-2 columns left">
+                <%= text_field_tag :min_hair_length, params[:min_hair_length], maxlength: 4, placeholder: 'Min Hair Length' %>
+              </div>
+              <div class="small-2 columns left">
+                <%= text_field_tag :max_hair_length, params[:max_hair_length], maxlength: 4, placeholder: 'Max Hair Length' %>
+              </div>
+            </div>
 
-            <%= submit_tag "Search", :name => nil %>
+            <div class="row">
+              <div class="small-2 columns">
+                <%= label_tag :min_neck_size, "Shirt (Neck Size)", :class => "right inline" %>
+              </div>
+              <div class="small-2 columns left">
+                <%= text_field_tag :min_neck_size, params[:min_neck_size], maxlength: 4, placeholder: 'Min Neck Size' %>
+              </div>
+              <div class="small-2 columns left">
+                <%= text_field_tag :max_neck_size, params[:max_neck_size], maxlength: 4, placeholder: 'Max Neck Size' %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="small-2 columns">
+                <%= label_tag :min_sleeve_size, "Shirt (Sleeve Size)", :class => "right inline" %>
+              </div>
+              <div class="small-2 columns left">
+                <%= text_field_tag :min_sleeve_size, params[:min_sleeve_size], maxlength: 4, placeholder: 'Min Sleeve Size' %>
+              </div>
+              <div class="small-2 columns left">
+                <%= text_field_tag :max_sleeve_size, params[:max_sleeve_size], maxlength: 4, placeholder: 'Max Sleeve Size' %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="small-2 columns">
+                <%= label_tag :min_suit_size, "Suit/Dress Size", :class => "right inline" %>
+              </div>
+              <div class="small-2 columns left">
+                <%= text_field_tag :min_suit_size, params[:min_suit_size], maxlength: 4, placeholder: 'Min Suit Size' %>
+              </div>
+              <div class="small-2 columns left">
+                <%= text_field_tag :max_suit_size, params[:max_suit_size], maxlength: 4, placeholder: 'Max Suit Size' %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="small-2 columns">
+                <%= label_tag :min_waist, "Pants (Waist)", :class => "right inline" %>
+              </div>
+              <div class="small-2 columns left">
+                <%= text_field_tag :min_waist, params[:min_waist], maxlength: 4, placeholder: 'Min Waist' %>
+              </div>
+              <div class="small-2 columns left">
+                <%= text_field_tag :max_waist, params[:max_waist], maxlength: 4, placeholder: 'Max Waist' %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="small-2 columns">
+                <%= label_tag :min_inseam_length, "Pants (Inseam)", :class => "right inline" %>
+              </div>
+              <div class="small-2 columns left">
+                <%= text_field_tag :min_inseam_length, params[:min_inseam_length], maxlength: 4, placeholder: 'Min Length' %>
+              </div>
+              <div class="small-2 columns left">
+                <%= text_field_tag :max_inseam_length, params[:max_inseam_length], maxlength: 4, placeholder: 'Max Length' %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="small-2 columns">
+                <%= label_tag :min_shoe_size, "Shoe Size", :class => "right inline" %>
+              </div>
+              <div class="small-2 columns left">
+                <%= text_field_tag :min_shoe_size, params[:min_shoe_size], maxlength: 4, placeholder: 'Min Length' %>
+              </div>
+              <div class="small-2 columns left">
+                <%= text_field_tag :max_shoe_size, params[:max_shoe_size], maxlength: 4, placeholder: 'Max Length' %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="small-2 columns">
+                <%= label_tag :min_hat_size, "Hat Size", :class => "right inline" %>
+              </div>
+              <div class="small-2 columns left">
+                <%= text_field_tag :min_hat_size, params[:min_hat_size], maxlength: 4, placeholder: 'Min Length' %>
+              </div>
+              <div class="small-2 columns left">
+                <%= text_field_tag :max_hat_size, params[:max_hat_size], maxlength: 4, placeholder: 'Max Length' %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="small-2 columns">
+                <%= label_tag :min_glove_size, "Glove Size", :class => "right inline" %>
+              </div>
+              <div class="small-2 columns left">
+                <%= text_field_tag :min_glove_size, params[:min_glove_size], maxlength: 4, placeholder: 'Min Size' %>
+              </div>
+              <div class="small-2 columns left">
+                <%= text_field_tag :max_glove_size, params[:max_glove_size], maxlength: 4, placeholder: 'Max Size' %>
+              </div>
+            </div>
+
+            <%= submit_tag "Search", :class => "button", :name => nil %>
+
           <% end %>          
         </div>
       </dd>  
@@ -65,3 +238,7 @@
     </dl> 
   </div>
 </div>
+
+<%#= javascript_tag do $("#panel1").removeClass("active"); %>
+  
+<%# end %>

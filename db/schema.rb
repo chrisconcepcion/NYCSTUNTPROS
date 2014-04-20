@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140415160736) do
+ActiveRecord::Schema.define(version: 20140420192257) do
 
   create_table "contacts", force: true do |t|
     t.integer "profile_id"
@@ -67,20 +67,20 @@ ActiveRecord::Schema.define(version: 20140415160736) do
     t.integer  "user_id"
     t.integer  "age"
     t.string   "occupation"
-    t.float    "height"
-    t.float    "weight"
-    t.string   "physique"
-    t.string   "ethnicity"
-    t.string   "eye_color"
-    t.string   "hair_color"
-    t.string   "hair_length"
-    t.float    "neck_size"
-    t.float    "sleeve_size"
-    t.string   "suit_size"
-    t.float    "waist"
-    t.float    "pant_length"
-    t.float    "shoe_size"
-    t.float    "hat_size"
+    t.integer  "height"
+    t.integer  "weight"
+    t.integer  "physique",            limit: 255
+    t.integer  "ethnicity",           limit: 255
+    t.integer  "eye_color",           limit: 255
+    t.integer  "hair_color",          limit: 255
+    t.integer  "hair_length",         limit: 255
+    t.integer  "neck_size"
+    t.integer  "sleeve_size"
+    t.integer  "suit_size",           limit: 255
+    t.integer  "waist"
+    t.integer  "pant_length"
+    t.integer  "shoe_size"
+    t.integer  "hat_size"
     t.string   "glove_size"
     t.string   "address"
     t.string   "city"
@@ -94,10 +94,10 @@ ActiveRecord::Schema.define(version: 20140415160736) do
     t.text     "work_history"
     t.text     "job_categories"
     t.text     "post_job_titles"
-    t.integer  "unpaid_work"
-    t.integer  "authorized_to_work"
+    t.boolean  "unpaid_work"
+    t.boolean  "authorized_to_work"
     t.string   "primary_citizenship"
-    t.integer  "valid_passport"
+    t.boolean  "valid_passport"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -6,8 +6,12 @@ def set_current_user(a_user = nil)
 end
 
 def current_user
-	set_current_user if cookies[:auth_token] == nil
-	User.find_by(cookies[:auth_token])
+	if cookies[:auth_token] == nil
+		set_current_user
+		User.find_by(auth_token: cookies[:auth_token])
+	else
+		User.find_by(auth_token: cookies[:auth_token])
+	end
 end
 
 def set_user_with_valid_reset_password_token

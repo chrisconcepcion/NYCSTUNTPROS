@@ -56,7 +56,11 @@ StuntRails::Application.routes.draw do
 
   root 'stunt_professionals#index'
   get 'register', to: 'users#new'
-  resources :users, only: [:create]
+  resources :users, only: [:create, :edit, :update] do
+		collection do
+			resources :profiles, only: [:show, :edit, :update]
+		end
+	end
   get 'login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
@@ -70,11 +74,17 @@ StuntRails::Application.routes.draw do
 	resources :male_stunt_actor, only: [:index] do
 		collection do
       get 'search', to: 'male_stunt_actor#search', as: 'search'
+			match 'advanced_search', to: 'male_stunt_actor#advanced_search', via: [:get, :post]
     end
 	end
 	resources :female_stunt_actor, only: [:index] do
 		collection do
       get 'search', to: 'female_stunt_actor#search', as: 'search'
+			match 'advanced_search', to: 'female_stunt_actor#advanced_search', via: [:get, :post]
     end
 	end
+	
+	resources :credits, only: [:index, :update, :create, :destroy, :update]
+	
+
 end

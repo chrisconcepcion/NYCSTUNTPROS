@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe StuntCoordinator do
+describe StuntCoordinatorController do
 	describe "GET index" do
 		it "sets stunt_coordinator variable" do
 			coordinator1 = Fabricate(:stunt_coordinator)

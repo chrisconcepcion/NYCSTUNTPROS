@@ -1,0 +1,150 @@
+<div class="row big-top-margin">
+  <div class="large-8 large-centered columns panel">
+    <h3 class="center">Edit Your Profile</h3>
+		<br />
+    <hr />
+  
+		<h4>General Information</h4>
+		<br />
+    <%= simple_form_for @profile, html: {data: {ajax: false}} do |f| %>
+			<%= f.input :photo, as: :file, label: "Picture" %>
+			<%= f.input :height, collection: (48..96).map { |num| [to_height(num), num] }, label: "Height", prompt: "Select your height", required:  false %>
+			<%= f.input :ethnicity, collection: [["Asian","asian"], ["Biracial", "biracial"], ["Indian", "indian"], ["Hispanic/Latin", "hispanic"], ["Middle Eastern", "middle_eastern"], ["Native American", "native_american"], ["Pacific Islander", "pacific_islander"], ["Caucasian", "caucasian"], ["Other", "other"]], label: "Ethnicity", prompt: "Select your ethnicity", required: false %>
+			<%= f.input :eye_color, collection: [["Amber", "amber"], ["Blue", "blue"], ["Brown", "brown"], ["Green", "green"], ["Gray", "gray"], ["Hazel", "hazel"]], label: "Eye Color", prompt: "Select your eye color", required: false %>
+			<%= f.input :hair_color, collection: [["Black", "black"], ["Brown", "brown"], ["Blond", "blond"],  ["Auburn","auburn"], ["Chestnut", "chestnut"], ["Red", "red"], ["Gray", "gray"]], label: "Hair Color", prompt: "Select your hair color", required: false %>
+			<%= f.input :hair_length, collection: [["Short", "short"], ["Medium", "medium"], ["Long", "long"]], label: "Hair Length", prompt: "Select your hair length", required: false %>
+			<%= f.input :shirt_neck, label: "Shirt Neck" %>
+			<%= f.input :shirt_sleeve, label: "Sleeve Length" %>
+			<%= f.input :suit_dress_size, label: "Suit/Dress Size" %>
+			<%= f.input :pants_inseam, label: "Waist Inseam" %>
+			<%= f.input :pants_waist, label: 	"Waist Size"  %>
+			<%= f.input :shoe_size, label: "Shoe Size" %>
+			<%= f.input :hat_size, label: "Hat Size" %>
+			<%= f.input :glove_size, label: "Glove" %>
+			<%= f.input :weight, collection: (80..500).map { |num| [num, num] }, label: "Weight", prompt: "Select your height", required:  false %>
+			<%= f.input :physique, collection: [["Slim", "slim"], ["Average", "average"], ["Athletic", "athletic"], ["Muscular", "muscular"],["Heavyset", "heavyset"]], label: "Physique", prompt: "Select your physique", required:  false %>
+			<br />
+			<h4>Contact Information</h4>
+			<br />
+			<%= simple_fields_for :contact, @profile.contact do |c| %>
+    		<%= c.input :address_line_1, required: false %>
+    		<%= c.input :address_line_2, required: false %>
+				<%= c.input :city, required: false %>
+				<%= c.input :state, required: false %>
+  			<%= c.input :zip_code, required: false %>
+				<%= c.input :phone_number, required: false %>
+    		<%= c.input :website, required: false %>
+			<% end %>
+			<br />
+
+			<h4>Employment Information</h4>
+			<br />
+			<%= simple_fields_for :employment, @profile.employment do |e| %>
+				<%= e.input :skills, as: :text, required: false %>
+    		<%= e.input :training, as: :text, required: false %>
+				<%= e.input :work_history, as: :text, label: "Work History", required: false %>
+				<%= e.input :job_categories, as: :text, label: "Job Categories", required: false %>
+				<%= e.input :past_job_titles, as: :text, label: "Past Job Titles", required: false %>
+				<%= e.input :primary_citizenship, label: "Primary Citizenship", required: false %>
+				<%= e.input :work_unpaid, collection: [["Yes", true], ["No", false]], label: "Work Unpaid?", required: false %>
+				<%= e.input :united_states_citizenship, collection: [["Yes", true], ["No", false]], label: "United States Citizenship", required: false %>
+				<%= e.input :valid_passport, collection: [["Yes", true], ["No", false]], label: "Valid Passport", required: false %>
+			<% end %>
+			<%= f.button :submit, class: "right" %>
+		<% end %>
+		<br />
+		<br />
+		<br />
+  </div>
+  <div class="large-6 large-offset-6 columns"></div>
+</div>
+
+
+			<div class="row big-top-margin">
+  <div class="large-8 large-centered columns panel">
+		<br />
+		<h4>Add a New Credit</h4>
+		<br />
+		<div ng-controller="CreditsCtrl">
+			 <form name="addCredit" class="simple-form" ng-submit="submitForm(new.$valid)" novalidate>
+				<label>Type</label>
+				<select name="media_category" ng-model="newEntry.media_category" required>
+					<option></option>
+					<option value="film">Film</option>
+					<option value="television">Television</option>
+					<option value="commercial">Commercial</option>
+					<option value="music_videos">Music Videos</option>
+					<option value="video_games">Video Games</option>
+					<option value="industrial">Industrial</option>
+				</select>
+				<p ng-show="addCredit.media_category.$invalid" class="help-block">required</p>
+				<label>Project Name</label>
+				<input type="text" ng-model="newEntry.project_name" name="project_name" required/>
+				<p ng-show="addCredit.project_name.$invalid" class="help-block">required</p>
+				<label>Role</label>
+				<input type="text" name="role" ng-model="newEntry.role" required>
+				<p ng-show="addCredit.role.$invalid" class="help-block">required</p>
+				<Label>Company</Label>
+				<input type="text" name="company" ng-model="newEntry.company" required>
+				<p ng-show="addCredit.company.$invalid" class="help-block">required</p>
+				<Label>Year Started</Label>
+				<select type="number" name="start_year" ng-model="newEntry.start_year" ng-options="n for n in range(start_year, end_year)" required></select>
+				<p ng-show="addCredit.start_year.$invalid" class="help-block">required</p>
+				<Label>Year Ended</Label>
+				<select type="number" name="end_year" ng-model="newEntry.end_year" ng-options="n for n in range(start_year, end_year)" required></select>
+				<p ng-show="addCredit.end_year.$invalid" class="help-block">required</p>
+				<button type="submit" ng-disabled="addCredit.$invalid" ng-click="createEntry()">ADD</button>
+			</form>
+			<hr />
+			<ul>
+			  <li ng-repeat="entry in entries">	
+					<div ng-controller="CreditsCtrl">
+					<div ng-show="active">
+			 			<form name="deleteCredit" class="simple-form" ng-submit="submitForm(deleteCredit)" novalidate>
+							<p>Type:{{entry.media_category}}</p>
+							<p>Project Name:{{entry.project_name}}</p>
+							<p>Role:{{entry.role}}</p>
+							<p>Company:{{entry.company}}</p>
+							<button type="submit" ng-click="deleteEntry(entry.id, $index)" >Delete</button>
+							<button type="submit" ng-click="editEntry()">Edit</button>
+						</form>
+					</div>
+					<div ng-show="edit">
+			 			<form name="updateCredit" class="simple-form" ng-submit="submitForm(updateCredit)" novalidate>
+							<label>Type</label>
+								<select name="media_category" ng-model="entry.media_category" required>
+									<option></option>
+									<option value="film">Film</option>
+									<option value="television">Television</option>
+									<option value="commercial">Commercial</option>
+									<option value="music_videos">Music Videos</option>
+									<option value="video_games">Video Games</option>
+									<option value="industrial">Industrial</option>
+								</select>
+				 				<p ng-show="updateCredit.media_category.$invalid" class="help-block">required</p>
+								<label>Project Name</label>
+								<input type="text" ng-model="entry.project_name" name="project_name" required/>
+								<p ng-show="updateCredit.project_name.$invalid" class="help-block">required</p>
+								<label>Role</label>
+								<input type="text" name="role" ng-model="entry.role" required>
+								<p ng-show="updateCredit.role.$invalid" class="help-block">required</p>
+								<Label>Company</Label>
+								<input type="text" name="company" ng-model="entry.company" required>
+								<p ng-show="updateCredit.company.$invalid" class="help-block">required</p>
+								<Label>Year Started</Label>
+								<select type="number" name="start_year" ng-model="entry.start_year" ng-options="n for n in range(start_year, end_year)" required></select>
+								<p ng-show="updateCredit.start_year.$invalid" class="help-block">required</p>
+								<Label>Year Ended</Label>
+								<select type="number" name="end_year" ng-model="entry.end_year" ng-options="n for n in range(start_year, end_year)" required></select>
+								<p ng-show="updateCredit.end_year.$invalid" class="help-block">required</p>
+								<button type="submit" ng-click="cancelEdit()">Cancel</button>
+								<button type="submit" ng-disabled="updateCredit.$invalid" ng-click="updateEntry(entry.id, $index)">Update</button>
+							</form>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>	
+	</div>
+</div>
+		

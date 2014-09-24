@@ -5,6 +5,8 @@ feature 'User Recovers Password' do
 		given(:slow_user) { Fabricate(:user, reset_password_token: "oldToken", reset_password_sent_at: 3.hours.ago) }
 		background do
 			clear_emails
+			user.create_profile
+			slow_user.create_profile
   	end
     scenario 'User forgot password and wants to login' do
         visit login_path

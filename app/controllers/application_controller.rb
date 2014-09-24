@@ -14,8 +14,8 @@ class ApplicationController < ActionController::Base
 
   def require_authentication
   	if current_user == nil
-			flash[:notice] = "Only authenticated users can preform this action, please sign in."
-			redirect_to sign_in_path
+			flash[:error] = "Only authenticated users can preform this action, please sign in."
+			redirect_to login_path
 		end
 	end
 	
@@ -35,4 +35,18 @@ class ApplicationController < ActionController::Base
 			redirect_to invalid_token_path
 		end
   end
+	
+	def require_owner
+		if current_user.id.to_s == params[:id]
+		elsif params[:controller] == "profiles"
+			if current_user.profile.id.to_s == params[:id]
+			else
+				flash[:error] = "You're not allowed to preform that action."
+				redirect_to root_path
+			end
+		else
+			flash[:error] = "You're not allowed to preform that action."
+			redirect_to root_path
+		end
+	end
 end

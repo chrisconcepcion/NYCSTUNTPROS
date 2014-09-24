@@ -33,9 +33,16 @@ gem 'bcrypt'
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem "figaro"
 gem 'sidekiq'
+gem 'will_paginate', '~> 3.0'
+gem "ransack"
+gem 'paperclip', '4.1'
+gem 'cocaine'
+gem 'angularjs-rails'
+gem 'angular_rails_csrf'
 
 group :development do
     gem "letter_opener"
+		gem 'better_errors'
 end
 
 group :development, :test do

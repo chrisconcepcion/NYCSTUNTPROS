@@ -9,8 +9,7 @@ before_action :already_authenticated, only: [:new, :create]
 	
   def create
 	  user = User.find_by_reset_password_token params[:reset_password_token]
-	  if (params[:password] == params[:password_confirmation]) && (params[:password].length  >= 6)
-	    user.update_attributes(password: params[:password], reset_password_token: nil)
+	  if user.update_password( params[:password], params[:password_confirmation] )
 	  	redirect_to root_path
 	  	flash[:notice] = "Your password have been updated. Log in with your new password."
   	else

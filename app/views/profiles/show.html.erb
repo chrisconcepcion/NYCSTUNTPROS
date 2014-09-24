@@ -1,0 +1,63 @@
+<div class="row big-top-margin profile_show">
+	<div class="large-3 columns"> 
+		<%= image_tag @profile.photo %>
+		<h6>Photos (0)</h6>
+		<hr />
+		<h6>Videos (0)</h6>
+	</div>
+	<div class="large-4 columns">
+		<h3><%= "#{@profile.user.full_name} Profile" %></h3>
+		<% if @profile.user.roles == "both" %>
+		<h6>Stunt Actors | Stunt Coordinator</h6>
+		<% elsif @profile.user.roles == "actor" %>
+		<h6>Stunt Actors</h6>
+		<% elsif @profile.user.roles == "coordinator" %>
+		<h6>Stunt Coordinator</h6>
+		<% end %>
+		<hr />
+		<p><%= "Gender: #{@profile.user.gender}" %></p>
+		<p><%= "Age: #{age(@profile.user.date_of_birth)}" %></p>
+		<p><%= "Height: #{to_height(@profile.height)}" %></p>
+		<p><%= "Physique: #{@profile.physique}" %></p>
+		<p><%= "Height: #{@profile.ethnicity}" %></p>
+		<p><%= "Eye Color: #{@profile.eye_color}" %></p>
+		<p><%= "Hair Color: #{@profile.hair_color}" %></p>
+		<p><%= "Hair Length: #{@profile.hair_length}" %></p>
+		<p><%= "Shirt(Neck): #{@profile.shirt_neck}" %></p>
+		<p><%= "Shirt(Sleeve): #{@profile.shirt_sleeve}" %></p>
+		<p><%= "Dress/Suit(Size): #{@profile.suit_dress_size}" %></p>
+		<p><%= "Pants(Waist): #{@profile.pants_waist}" %></p>
+		<p><%= "Pants(Inseam): #{@profile.pants_inseam}" %></p>
+		<p><%= "Shoe(Size): #{@profile.shoe_size}" %></p>
+		<p><%= "Hat(Size): #{@profile.hat_size}" %></p>
+		<p><%= "Glove(Size): #{@profile.glove_size}" %></p>
+	</div>
+	<div class="large-4 large-offset-1 columns right-widget">
+		<h4 class="text-center">Contact Information</h4>
+		<div class="panel ">
+			<p><%="Address: #{@profile.contact.address_line_1}\n #{@profile.contact.address_line_2}"%></p>
+			<p><%="#{@profile.contact.city}, #{@profile.contact.state} #{@profile.contact.zip_code}"%></p>
+			<p><%="Phone Number: #{@profile.contact.phone_number}"%></p>
+			<p><%="Email: #{@profile.user.email}"%>
+		</div>
+	</div>
+</div>
+<div class="row medium-top-margin profile_show">
+	<div class="large-5 large-offset-3 columns end">
+		<h3>Training</h3>
+		<hr />
+		<p><%= "#{@profile.employment.training}" %></p>
+	</div>
+</div>
+<div class="row medium-top-margin medium-bottom-margin profile_show">
+	<div class="large-5 large-offset-3 columns end">
+		<h3>Employment Details</h3>
+		<hr />
+		<p><%="Work History: #{@profile.employment.work_history}" %></p>
+		<p><%="Job Category: #{@profile.employment.job_categories}" %></p>
+		<p><%="Willing to work unpaid? #{@profile.employment.work_unpaid}" %></p>
+		<p><%="Authorized to work in the United States? #{@profile.employment.work_unpaid}" %></p>
+		<p><%="Do you have a valid passport? #{@profile.employment.valid_passport}" %></p>
+		<p><%="Prior Job Title(s): #{@profile.employment.past_job_titles}"%></p>
+	</div>
+</div>

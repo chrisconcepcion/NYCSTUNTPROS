@@ -10,25 +10,18 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require angular
+//= require angular-resource
 //= require jquery
 //= require jquery_ujs
 //= require foundation
 //= require turbolinks
 //= require_tree .
+//= require jquery.Jcrop
 
-$(function(){ $(document).foundation();
-	$(window).bind("load", function () {
-    	var footer = $("#footer");
-    	var pos = footer.position();
-    	var height = $(window).height();
-    	height = height - pos.top;
-    	height = height - footer.height();
-    	if (height > 0) {
-        	footer.css({
-            	'margin-top': height + 'px'
-        	});
-    	}
-	});
-});
+
+$(function () { $(document).foundation();
+
+     });
 
 

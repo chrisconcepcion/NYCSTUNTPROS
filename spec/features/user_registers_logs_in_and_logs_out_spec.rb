@@ -29,7 +29,7 @@ feature 'User registers, logs in and logs out' do
         fill_in "Password", with: user.password
         click_button "Login"
         expect(page).to have_content "You have successfully logged in!"
-        click_link "logout"
+        click_link "Logout"
         expect(page).to have_content "You have successfully logged out."
     end
 end

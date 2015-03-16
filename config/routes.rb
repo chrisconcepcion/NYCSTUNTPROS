@@ -86,5 +86,6 @@ StuntRails::Application.routes.draw do
 	
 	resources :credits, only: [:index, :update, :create, :destroy, :update]
 	
-
+	resources :contacts, only: [:show, :update]
+	resources :employments, only: [:show, :update]
 end

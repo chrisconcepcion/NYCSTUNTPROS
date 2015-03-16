@@ -70,9 +70,9 @@
 						<%= image_tag user.profile.photo(:small) %>
 					<% end %>
 					<h6><%= user.full_name %></h6>
-					<p><%= (user.profile.height/12).to_s + " feet"  %> 	<%=user.profile.weight.to_s + " pounds" %></p>
+					<p><%= (user.profile.height/12).to_s + " feet" rescue "Unknown"%> 	<%=user.profile.weight.to_s + " pounds" rescue "Uknown" %></p>
 					<h6>Contact Information</h6>
-					<p><%=user.profile.contact.city + ", " + user.profile.contact.state %>
+					<p><%=user.profile.contact.city + ", " + user.profile.contact.state rescue "Unknown" %>
 					<p><%=user.profile.contact.phone_number %></p>
 					<p><%= user.profile.contact.email %></p>
 				</div>

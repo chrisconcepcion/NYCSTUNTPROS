@@ -49,7 +49,7 @@
 </div>
 <div class="row">
 	<div class="small-2 columns end">
-		<%= submit_tag 'Search' %>
+		<%= submit_tag 'Search', :class => 'button' %>
 		<% end %>
 	</div>
 </div>
@@ -70,9 +70,9 @@
 						<%= image_tag user.profile.photo(:small) %>
 					<% end %>
 					<h6><%= user.full_name %></h6>
-					<p><%= (user.profile.height/12).to_s + " feet"  %> 	<%=user.profile.weight.to_s + " pounds" %></p>
+					<p><%= (user.profile.height/12).to_s + " feet" rescue "field not filled"  %> 	<%=user.profile.weight.to_s + " pounds" rescue "field not filled" %></p>
 					<h6>Contact Information</h6>
-					<p><%=user.profile.contact.city + ", " + user.profile.contact.state %>
+					<p><%=user.profile.contact.city + ", " + user.profile.contact.state rescue "field not filled" %>
 					<p><%=user.profile.contact.phone_number %></p>
 					<p><%= user.profile.contact.email %></p>
 				</div>

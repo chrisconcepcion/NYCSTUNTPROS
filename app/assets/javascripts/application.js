@@ -11,16 +11,19 @@
 // about supported directives.
 //
 //= require angular
+//= require angular-route
+//= require angular-animate
 //= require angular-resource
+//= require angular-mocks
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require turbolinks
 //= require_tree .
 //= require jquery.Jcrop
 
 
-$(function () { $(document).foundation();
+
+$(function () { $(document).foundation('reflow');
 
      });
 

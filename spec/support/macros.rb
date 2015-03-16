@@ -18,3 +18,12 @@ def set_user_with_valid_reset_password_token
 	user = Fabricate(:user, reset_password_token: "testing", reset_password_sent_at: 1.hour.ago)
 	set_current_user(user)
 end
+
+def user_sign_in(a_user = nil)
+  user = (a_user || Fabricate(:user))
+  visit '/login'
+  fill_in "Email", with: user.email
+  fill_in "Password", with: user.password
+  click_button "Login"
+end
+ 

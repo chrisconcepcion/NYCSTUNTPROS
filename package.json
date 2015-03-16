@@ -1,0 +1,7 @@
+{
+  "name": "angular-rails-example",
+  "dependencies" : {
+    "karma":  ">= 0.10.9",
+    "karma-jasmine": "0.1.5",
+  }
+}

@@ -6,20 +6,22 @@ class CreditsController < ApplicationController
 	end
 	
 	def create
-		respond_with @credit = Credit.create(credit_params.merge!(profile_id: current_user.profile.id))
+		respond_with credit = Credit.create(credit_params.merge!(profile_id: current_user.profile.id))
 	end
 	
 	def destroy
-		respond_with @credit = current_user.profile.credits.destroy(params[:id])
+		credit = current_user.profile.credits.destroy(params[:id])
+		respond_with credit 
 	end
 	
 	def update
-		respond_with @credit = current_user.profile.credits.find_by(params[:id])
-		@credit.update(credit_params)
+		credit = Credit.find_by_id(params[:id])
+		credit.update(credit_params)
+		respond_with credit
 	end
 	
 private
 	def credit_params
-		params.require(:credit).permit(:media_category, :television, :project_name, :role, :company, :start_year, :end_year)
+		params.require(:credit).permit(:media_category, :project_name, :role, :company, :start_year, :end_year, :id)
 	end
 end

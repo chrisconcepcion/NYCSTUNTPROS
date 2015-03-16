@@ -33,4 +33,12 @@ StuntRails::Application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
   config.action_mailer.default_url_options = { :host => "localhost:3000" } 
+	config.assets.paths << Rails.root.join('spec/karma')
+	
+	
+	Capybara.register_driver :selenium do |app|
+  	Capybara::Selenium::Driver.new(app, :browser => :chrome)
+	end
+	
+	
 end

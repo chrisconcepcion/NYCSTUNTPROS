@@ -42,20 +42,6 @@ describe ProfilesController do
 					expect(assigns(:profile)[k]).to eq v
 				end
 			end
-			it "updates contact associated with profile" do
-				contact_attributes = Fabricate.attributes_for(:contact)
-				post :update, id: current_user.id, profile:  Fabricate.attributes_for(:profile, photo: Rack::Test::UploadedFile.new(Rails.root + 'spec/support/images/test.jpg', 'image/jpg')) ,  contact: Fabricate.attributes_for(:contact), employment: Fabricate.attributes_for(:employment) 
-				contact_attributes.each do |k,v|
-					expect(assigns(:profile).contact[k]).to eq v
-				end
-			end
-			it "updates employment associated with profile" do
-				employment_attributes = Fabricate.attributes_for(:employment)
-				post :update, id: current_user.id, profile:  Fabricate.attributes_for(:profile, photo: Rack::Test::UploadedFile.new(Rails.root + 'spec/support/images/test.jpg', 'image/jpg')) ,  contact: Fabricate.attributes_for(:contact), employment: Fabricate.attributes_for(:employment) 
-				employment_attributes.each do |k,v|
-					expect(assigns(:profile).employment[k]).to eq v
-				end
-			end
 			it "renders crop" do
 				post :update, id: current_user.id, profile:  Fabricate.attributes_for(:profile, photo: Rack::Test::UploadedFile.new(Rails.root + 'spec/support/images/test.jpg', 'image/jpg')) ,  contact: Fabricate.attributes_for(:contact), employment: Fabricate.attributes_for(:employment) 
 				expect(response).to render_template :crop
@@ -69,44 +55,16 @@ describe ProfilesController do
 					expect(assigns(:profile)[k]).to eq v
 				end
 			end
-			it "updates contact associated with profile" do
-				contact_attributes = Fabricate.attributes_for(:contact)
-				post :update, id: current_user.id, profile: Fabricate.attributes_for(:profile, photo: nil) ,contact: Fabricate.attributes_for(:contact), employment: Fabricate.attributes_for(:employment) 
-				contact_attributes.each do |k,v|
-					expect(assigns(:profile).contact[k]).to eq v
-				end
-			end
-			it "updates employment associated with profile" do
-				employment_attributes = Fabricate.attributes_for(:employment)
-				post :update, id: current_user.id, profile: Fabricate.attributes_for(:profile, photo: nil) ,contact: Fabricate.attributes_for(:contact), employment: Fabricate.attributes_for(:employment) 
-				employment_attributes.each do |k,v|
-					expect(assigns(:profile).employment[k]).to eq v
-				end
-			end
 			it "calls method reprocess photo" do
 				Profile.any_instance.should_receive(:reprocess_photo)
 				post :update, id: current_user.id, profile:  Fabricate.attributes_for(:profile, photo: nil) ,contact: Fabricate.attributes_for(:contact), employment: Fabricate.attributes_for(:employment) 
 			end
-			it "redirects to root" do
+			it "redirects to profile edit" do
 				post :update, id: current_user.id, profile:  Fabricate.attributes_for(:profile, photo: nil) ,contact: Fabricate.attributes_for(:contact), employment: Fabricate.attributes_for(:employment) 
-				expect(response).to redirect_to root_path
+				expect(response).to redirect_to edit_profile_path
 			end
 			it "displays flash notice" do
 			post :update, id: current_user.id, profile:  Fabricate.attributes_for(:profile, photo: nil) ,contact: Fabricate.attributes_for(:contact), employment: Fabricate.attributes_for(:employment) 
-				expect(flash[:notice]).to eq "Your profile has been succesfully updated."
-			end
-		end
-		context "when inputs are for resizing photo" do
-			it "calls photo resize" do
-				Profile.any_instance.should_receive(:reprocess_photo)
-				post :update, id: current_user.id, profile:  Fabricate.attributes_for(:profile_photo_resize, photo: nil) 
-			end
-			it "redirects to root" do
-				post :update, id: current_user.id, profile:  Fabricate.attributes_for(:profile_photo_resize, photo: nil) 
-				expect(response).to redirect_to root_path
-			end
-			it "displays flash notice" do
-				post :update, id: current_user.id, profile:  Fabricate.attributes_for(:profile_photo_resize, photo: nil) 
 				expect(flash[:notice]).to eq "Your profile has been succesfully updated."
 			end
 		end

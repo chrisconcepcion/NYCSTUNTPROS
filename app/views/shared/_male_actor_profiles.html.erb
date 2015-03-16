@@ -22,6 +22,7 @@
 	<ul class="large-block-grid-5">
 		<% object.each do |user| %>
 			<li>
+				<%= link_to profile_path(id: user.profile.id) do %>
 				<div class="profile">
   				<%= image_tag "tempProfileSmall.png" %>
 					<h6><%= user.full_name %></h6>
@@ -31,6 +32,7 @@
 					<p><%=user.profile.contact.phone_number %></p>
 					<p><%= user.profile.contact.email %></p>
 				</div>
+				<% end %>
 			</li>
 		<% end %>
 	</ul>

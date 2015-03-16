@@ -8,6 +8,7 @@
 	<ul class="large-block-grid-5">
 		<% object.each do |user| %>
 			<li>
+				<%= link_to profile_path(id: user.profile.id) do %>
 				<div class="profile">
   				<% if user.profile.photo_updated_at.blank? %>
 					  				<%= image_tag "tempProfileSmall.png" %>
@@ -23,6 +24,7 @@
 					<p><%=user.profile.contact.phone_number %></p>
 					<p><%= user.profile.contact.email %></p>
 				</div>
+				<% end %>
 			</li>
 		<% end %>
 	</ul>

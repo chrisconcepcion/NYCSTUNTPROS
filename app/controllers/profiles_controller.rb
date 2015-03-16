@@ -1,45 +1,42 @@
 class ProfilesController < ApplicationController
 	before_action :require_authentication, only: [:edit, :update]
 	before_action :require_owner, only: [:edit, :update]
-	
+	respond_to :json
 	def show
 		@profile = User.find_by_id(params[:id]).profile
+		respond_to do |format|
+      format.html
+      format.json { render json: @profile }
+    end
 	end
+	
 	def edit
 		@profile = User.find_by_id(params[:id]).profile
 	end
+	
 	def update
-		if params[:angular]
-		else
-		@profile = Profile.find_by_id(params[:id])
-		if photo_resize?
-			@profile.update(profile_params)
-		else	
-			@profile.update(profile_params) && @profile.contact.update(contact_params) && @profile.employment.update(employment_params)
-		end
-		if @profile.save && @profile.contact.save && @profile.employment.save && profile_params[:photo].present?
-				render :crop
-		elsif @profile.save && @profile.contact.save&& @profile.employment.save && !profile_params[:photo].present?
-				@profile.reprocess_photo
-				redirect_to root_path
-				flash[:notice] = "Your profile has been succesfully updated."
+		@profile = User.find_by_id(params[:id]).profile
+		@profile.update(profile_params)
+		if @profile.save && profile_params[:photo].present?
+			render :crop
+		elsif @profile.save && !profile_params[:photo].present?
+			@profile.reprocess_photo
+			respond_to do |format|
+  			format.html { redirect_to edit_profile_path }
+  			format.json { render json: @user }
+			end
+			flash[:notice] = "Your profile has been succesfully updated."
 		else
 			render :edit
-		end
 		end
 	end
 	
 private
 	def profile_params
-		params.require(:profile).permit(:photo, :crop_x, :crop_y, :crop_w, :crop_h, :height, :physique, :ethnicity, :eye_color, :hair_color, :hair_length, :shirt_neck, :shirt_sleeve, :suit_dress_size, :pants_waist, :pants_inseam, :shoe_size, :hat_size, :glove_size, :weight)
+		params.require(:profile).permit(:id, :photo, :crop_x, :crop_y, :crop_w, :crop_h, :height, :physique, :ethnicity, :eye_color, :hair_color, :hair_length, :shirt_neck, :shirt_sleeve, :suit_dress_size, :pants_waist, :pants_inseam, :shoe_size, :hat_size, :glove_size, :weight)
 	end
 
-	def contact_params
-		params.require(:contact).permit(:address_line_1, :address_line_2, :city, :state, :zip_code, :phone_number, :email, :website)
-  end
-	def employment_params 
-		params.require(:employment).permit(:skills, :training, :work_history, :job_categories, :past_job_titles, :primary_citizenship, :work_unpaid, :united_states_citizenship, :valid_passport)
-	end
+
 end
 
 def photo_resize?

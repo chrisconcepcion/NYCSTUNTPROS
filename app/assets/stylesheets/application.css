@@ -150,3 +150,73 @@ body {
 .help-block { 
 	color: red !important;
 }
+
+.successFeedback {
+	color: blue;
+	font-size: 12px;
+	-webkit-transition: 1s;
+
+}
+
+.errorFeedback {
+	color: red;
+	font-size: 12px;
+	-webkit-transition: 1s;
+}
+
+.errorFeedback.ng-enter, .successFeedback.ng-enter, .errorFeedback.ng-leave.ng-leave-active, .successFeedback.ng-leave.ng-leave-active {
+	-webkit-transition: 1s linear all; /* Chrome */
+	transition: 1s linear all;
+	opacity: 0;
+}
+ 
+.errorFeedback.ng-enter.ng-enter-active, .successFeedback.ng-enter.ng-enter-active, .errorFeedback.ng-leave, .successFeedback.ng-leave {
+	opacity: 1;
+}
+
+.creditList {
+		-webkit-transition: 1s;
+}
+
+.creditList.ng-enter {
+	-webkit-animation: fadeInLeft 1s;
+  -moz-animation: fadeInLeft 1s;
+  -ms-animation: fadeInLeft 1s;
+  animation: fadeInLeft 1s;
+}
+  
+.creditList.ng-leave {
+	-webkit-animation: bounceOut 1s;
+  -moz-animation: bounceOut 1s;
+  -ms-animation: bounceOut 1s;
+  animation: bounceOut 1s;
+}
+ul.creditList  {
+	list-style-type: none;
+}
+
+
+.creditList p {
+	margin: 5px 2px 20px 2px;
+	display: inline-block;
+}
+
+.creditTitle {
+	color: blue;
+}
+
+.creditTitle i {
+	font-size: 12px;
+}
+.creditTitle span{
+	color: grey;
+	font-size: 12px;
+}
+
+.creditList .year p {
+	float: right;
+}
+
+.noCredits {
+	color: blue !important;
+}

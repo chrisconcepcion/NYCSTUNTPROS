@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,7 +15,7 @@
   <nav class="top-bar" data-topbar>
   <ul class="title-area">
     <li class="name">
-      <h1><a href="#">NYC Stunt Pros</a></h1>
+      <h1><a href="/">NYC Stunt Pros</a></h1>
     </li>
     <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
   </ul>
@@ -24,7 +24,15 @@
     <!-- Right Nav Section -->
     <ul class="right">
       <% if current_user %>
-        <li><a href="logout">logout</a></li>
+				<li class="has-dropdown">
+        <a>Me</a>
+        <ul class="dropdown">
+          <li class="has-dropdown">
+          	<li><%= link_to "Profile", profile_path(current_user.profile.id) %></li>
+						<li><%= link_to "Edit Profile", edit_profile_path(current_user.profile.id) %></li>
+        		<li><a href="logout">Logout</a></li>
+					</li>
+				</ul>
       <% else %>
         <li class="active"><a href="login">Login</a></li>
         <li><a href="register">Register</a></li>
@@ -33,7 +41,7 @@
 
     <!-- Left Nav Section -->
     <ul class="left">
-      <li><a href="#">Stunt Coordinators</a></li>
+      <li><a href="">Stunt Coordinators</a></li>
       <li><a href="#"></a></li>
       <li class="has-dropdown">
         <a href="#">Stunt Actors</a>
@@ -41,14 +49,14 @@
           <li class="has-dropdown">
           <a href="#">Men</a>
           <ul class="dropdown">
-            <li><a href="#">Search</a></li>
-            <li><a href="#">View All</a></li>
+            <li><%= link_to "Search", advanced_search_male_stunt_actor_index_path %></li>
+            <li><%= link_to "View All", male_stunt_actor_index_path %></li>
           </ul>
           <li class="has-dropdown">
           <a href="#">Women</a>
           <ul class="dropdown">
-            <li><a href="#">Search</a></li>
-            <li><a href="#">View All</a></li>
+            <li><%= link_to "Search", advanced_search_female_stunt_actor_index_path %></li>
+            <li><%= link_to "View All", female_stunt_actor_index_path %></li>
           </ul>
         </ul>
       </li>
@@ -87,4 +95,7 @@
       </ul>
     </div>
   </body>
+	<script>
+  $(document).foundation()
+	</script>
 </html>

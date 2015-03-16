@@ -6,7 +6,6 @@ describe UpdatePasswordController do
 			let(:action) { get :new, reset_password_token: "testing" }
 		end
 		it_behaves_like "when reset_password_token is invalid" do
-			user = Fabricate(:user) 
 			let(:action) { get :new, reset_password_token:"" }
     end
   	context "when reset_password_token matches a user" do

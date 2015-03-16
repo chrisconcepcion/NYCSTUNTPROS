@@ -1,0 +1,84 @@
+<div class="panel">
+<div class="row">
+	<div class="large-6 large-centered columns">
+    <h3>Female Stunt Actor: Advanced Search</h3>
+  </div>
+</div>
+<hr />
+<div class="row">
+	<%= simple_form_for @q, url: advanced_search_female_stunt_actor_index_path, html: { method: :post } do |f| %>
+	<div class="small-4 columns">
+  	<%= f.input :first_name_cont, label: "First Name", required: false %>
+  </div>
+	<div class="small-4 columns">
+  	<%= f.input :middle_name_cont, label: "Middle Name", required: false %>
+	</div>
+	<div class="small-4 columns end">
+  	<%= f.input :last_name_cont, label: "Last Name", required: false %>
+	</div>
+</div>
+<div class="row">
+	<div class="large-3 columns">
+  	<%= f.input :profile_physique_eq, collection: [["Slim", "slim"], ["Average", "average"], ["Athletic", "athletic"], ["Muscular", "muscular"],["Heavyset", "heavyset"]], label: "Physique", prompt: "Select your physique", required:  false %>
+	</div>
+	<div class="large-3 columns end">
+		<%= f.input :profile_ethnicity_eq, collection: [["Asian","asian"], ["Biracial", "biracial"], ["Indian", "indian"], ["Hispanic/Latin", "hispanic"], ["Middle Eastern", "middle_eastern"], ["Native American", "native_american"], ["Pacific Islander", "pacific_islander"], ["Caucasian", "caucasian"], ["Other", "other"]], label: "Ethnicity", prompt: "Select your ethnicity", required: false %>
+	</div>
+	
+</div>
+<div class="row">
+	<div class="large-3 columns">
+		<%= f.input :profile_height_gteq, collection: (48..96).map { |num| [to_height(num), num] }, label: "Height Minimum", prompt: "Select your height", required:  false %>
+	</div>
+	<div class="large-3 columns end">
+		<%= f.input :profile_height_lteq, collection: (48..96).map { |num| [to_height(num), num] }, label: "Height Maximum", prompt: "Select your height", required:  false %>
+	</div>
+</div>
+<div class="row">
+	<div class="large-3 columns">
+		<%= f.input :profile_hair_color_eq, collection: [["Black", "black"], ["Brown", "brown"], ["Blond", "blond"],  ["Auburn","auburn"], ["Chestnut", "chestnut"], ["Red", "red"], ["Gray", "gray"]], label: "Hair Color", prompt: "Select your hair color", required: false %>
+	</div>
+	<div class="large-3 columns end">
+		<%= f.input :profile_hair_length_eq, collection: [["Short", "short"], ["Medium", "medium"], ["Long", "long"]], label: "Hair Length", prompt: "Select your hair length", required: false %>
+	</div>
+</div>
+<div class="row">
+	<div class="large-3 columns end">
+		<%= f.input :profile_eye_color_eq, collection: [["Amber", "amber"], ["Blue", "blue"], ["Brown", "brown"], ["Green", "green"], ["Gray", "gray"], ["Hazel", "hazel"]], label: "Eye Color", prompt: "Select your eye color", required: false %>
+	</div>
+</div>
+<div class="row">
+	<div class="small-2 columns end">
+		<%= submit_tag 'Search' %>
+		<% end %>
+	</div>
+</div>
+</div>
+<div class="row">
+	<div class="large-12 columns">
+		<h3 class="profiles_row_title">Search Results</h3>
+	</div>
+</div>
+<div class="row">
+	<ul class="large-block-grid-5">
+		<% @results.each do |user| %>
+			<li>
+				<div class="profile">
+  				<% if user.profile.photo_updated_at.blank? %>
+						<%= image_tag "tempProfileSmall.png" %>
+					<% else %>
+						<%= image_tag user.profile.photo(:small) %>
+					<% end %>
+					<h6><%= user.full_name %></h6>
+					<p><%= (user.profile.height/12).to_s + " feet" rescue "Unknown"%> 	<%=user.profile.weight.to_s + " pounds" rescue "Uknown" %></p>
+					<h6>Contact Information</h6>
+					<p><%=user.profile.contact.city + ", " + user.profile.contact.state rescue "Unknown" %>
+					<p><%=user.profile.contact.phone_number %></p>
+					<p><%= user.profile.contact.email %></p>
+				</div>
+			</li>
+		<% end %>
+	</ul>
+	<%= will_paginate @results, :page_links => true %>
+</div>
+

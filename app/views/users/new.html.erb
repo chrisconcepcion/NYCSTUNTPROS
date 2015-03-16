@@ -7,12 +7,13 @@
 <%= simple_form_for @user do |f| %>
   <div class="large-6 columns">
       <%= f.input :email %>
-      <%= f.input :password, label: "* Password" %>
+      <%= f.input :password, label: "Password" %>
       <%= f.input :first_name, label: "First Name" %>
       <%= f.input :last_name, label: "Last Name" %>
       <%= f.input :gender, label: "* Gender", :as => :radio_buttons, collection: [["Male", "male"],["Female", "female"]], :item_wrapper_class => 'inline' %>
       <%= f.input :roles, label: "* Roles", :as => :radio_buttons, collection: [["Stunt Actor", "actor"],["Stunt Coordinator", "coordinator"]], :item_wrapper_class => 'inline' %>
- 
+		<%= f.label :date_of_birth, "*Date of Birth" %>
+		<%= f.date_select :date_of_birth, start_year: Time.now.year, end_year: 1920, use_month_numbers: true, :prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' } %>
     <%= f.submit  "Sign Up", class:"button [radius round] floatRight"%>
   </div>
   <div class="large-6 large-offset-6 columns"></div>

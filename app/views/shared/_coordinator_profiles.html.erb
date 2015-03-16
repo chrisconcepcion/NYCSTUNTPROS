@@ -1,0 +1,32 @@
+
+<div class="row">
+	<div class="large-12 columns">
+		<h3 class="profiles_row_title"><%= header %></h3>
+	</div>
+</div>
+<div class="row">
+	<ul class="large-block-grid-5">
+		<% object.each do |user| %>
+			<li>
+				<%= link_to profile_path(id: user.profile.id) do %>
+				<div class="profile">
+  				<% if user.profile.photo_updated_at.blank? %>
+					  				<%= image_tag "tempProfileSmall.png" %>
+
+					<% else %>
+					  				<%= image_tag user.profile.photo(:small) %>
+
+					<% end %>
+					<h6><%= user.full_name %></h6>
+					<p><%= (user.profile.height/12).to_s + " feet"  %> 	<%=user.profile.weight.to_s + " pounds" %></p>
+					<h6>Contact Information</h6>
+					<p><%=user.profile.contact.city + ", " + user.profile.contact.state %>
+					<p><%=user.profile.contact.phone_number %></p>
+					<p><%= user.profile.contact.email %></p>
+				</div>
+				<% end %>
+			</li>
+		<% end %>
+	</ul>
+	<%= will_paginate object, :page_links => true %>
+</div>

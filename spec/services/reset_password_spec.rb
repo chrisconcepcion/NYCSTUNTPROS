@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe ResetPassword do
   let(:user) { Fabricate(:user) }
+		around(:each) { ActionMailer::Base.deliveries.clear }
     it "generates a reset_password_token for user" do
           ResetPassword.new(user).reset_password
         expect(user.reload.reset_password_token).to_not eq nil

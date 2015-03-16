@@ -3,6 +3,9 @@ require 'spec_helper'
 feature 'User registers, logs in and logs out' do
 		
     given (:user) { Fabricate(:user) } 
+		background do
+			user.create_profile
+		end
     scenario "User stumbles upon website and registers" do
         visit root_path
         click_link "Register"
@@ -12,6 +15,9 @@ feature 'User registers, logs in and logs out' do
         fill_in "Last Name", with: "builder"
         choose('Male')
         choose('Stunt Actor')
+				select "2006", :from => "user_date_of_birth_1i"
+				select "12", :from => "user_date_of_birth_2i"
+				select "19", :from => "user_date_of_birth_3i"
         click_button "Sign Up"
         expect(page).to have_content "Thanks for signing up! Now sign in with your credentials."
     end
@@ -23,7 +29,7 @@ feature 'User registers, logs in and logs out' do
         fill_in "Password", with: user.password
         click_button "Login"
         expect(page).to have_content "You have successfully logged in!"
-        click_link "logout"
+        click_link "Logout"
         expect(page).to have_content "You have successfully logged out."
     end
 end

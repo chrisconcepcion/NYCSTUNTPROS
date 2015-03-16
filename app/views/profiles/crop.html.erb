@@ -1,0 +1,27 @@
+<div class="row big-top-margin">
+	<div class="large-7 columns panel">
+		<h3>Crop Photo</h3>
+		<%= image_tag @profile.photo(:large), id: "cropbox" %>
+	</div>
+</div>
+<div class="row big-top-margin">
+	<div class="large-3 columns panel">
+		<h4>Preview</h4>
+		<div style="width:195px; height:220px; border: 1px solid black; overflow:hidden">
+  		<%= image_tag @profile.photo.url(:large), :id => "preview" %>
+		</div>
+	</div>
+</div>
+	<div class="row">
+		<div class="large-1 columns end">
+			<%= form_for @profile do |f| %>
+  		<% %w[x y w h].each do |attribute| %>
+    	<%= f.hidden_field "crop_#{attribute}" %>
+  	<% end %>
+  	<div class="actions">
+    	<%= f.submit "Crop", class: "button" %>
+  	</div>
+		<% end %>
+		</div>
+	</div>
+

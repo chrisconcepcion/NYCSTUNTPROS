@@ -54,9 +54,13 @@ StuntRails::Application.routes.draw do
   #     resources :products
   #   end
 
-  root 'sessions#index'
+  root 'stunt_professionals#index'
   get 'register', to: 'users#new'
-  resources :users, only: [:create]
+  resources :users, only: [:create, :edit, :update] do
+		collection do
+			resources :profiles, only: [:show, :edit, :update]
+		end
+	end
   get 'login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
@@ -66,4 +70,22 @@ StuntRails::Application.routes.draw do
   resources :update_password, only: [:create]
   get "/invalid_token", to: "invalid_token#index"
 	get "/reset_password_confirmation", to: "reset_password_confirmation#index"
+	resources :stunt_coordinator, only: [:index]
+	resources :male_stunt_actor, only: [:index] do
+		collection do
+      get 'search', to: 'male_stunt_actor#search', as: 'search'
+			match 'advanced_search', to: 'male_stunt_actor#advanced_search', via: [:get, :post]
+    end
+	end
+	resources :female_stunt_actor, only: [:index] do
+		collection do
+      get 'search', to: 'female_stunt_actor#search', as: 'search'
+			match 'advanced_search', to: 'female_stunt_actor#advanced_search', via: [:get, :post]
+    end
+	end
+	
+	resources :credits, only: [:index, :update, :create, :destroy, :update]
+	
+	resources :contacts, only: [:show, :update]
+	resources :employments, only: [:show, :update]
 end

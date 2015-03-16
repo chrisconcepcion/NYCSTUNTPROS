@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140414215055) do
+ActiveRecord::Schema.define(version: 20140505211933) do
 
   create_table "contacts", force: true do |t|
     t.integer "profile_id"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(version: 20140414215055) do
     t.string  "phone_number"
     t.string  "email"
     t.string  "website"
+  end
+
+  create_table "credits", force: true do |t|
+    t.string  "media_category"
+    t.string  "project_name"
+    t.string  "role"
+    t.string  "company"
+    t.date    "start_year"
+    t.date    "end_year"
+    t.integer "profile_id"
   end
 
   create_table "employments", force: true do |t|
@@ -39,7 +49,26 @@ ActiveRecord::Schema.define(version: 20140414215055) do
   end
 
   create_table "profiles", force: true do |t|
-    t.integer "user_id"
+    t.integer  "user_id"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.integer  "height"
+    t.string   "ethnicity"
+    t.string   "eye_color"
+    t.string   "hair_color"
+    t.string   "hair_length"
+    t.string   "shirt_neck"
+    t.string   "shirt_sleeve"
+    t.string   "suit_dress_size"
+    t.string   "pants_inseam"
+    t.string   "pants_waist"
+    t.string   "shoe_size"
+    t.string   "hat_size"
+    t.string   "glove_size"
+    t.integer  "weight"
+    t.string   "physique"
   end
 
   create_table "users", force: true do |t|
@@ -53,24 +82,10 @@ ActiveRecord::Schema.define(version: 20140414215055) do
     t.string   "auth_token"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
-  end
-
-  create_table "wardrobes", force: true do |t|
-    t.integer "profile_id"
-    t.integer "height"
-    t.string  "physique"
-    t.string  "ethnicity"
-    t.string  "eye_color"
-    t.string  "hair_color"
-    t.string  "hair_length"
-    t.string  "shirt_neck"
-    t.string  "shirt_sleeve"
-    t.string  "suit_dress_size"
-    t.string  "pants_waist"
-    t.string  "pants_inseam"
-    t.string  "shoe_size"
-    t.string  "hat_size"
-    t.string  "glove_size"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "full_name"
+    t.date     "date_of_birth"
   end
 
 end

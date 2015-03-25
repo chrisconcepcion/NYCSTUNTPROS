@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140505211933) do
+ActiveRecord::Schema.define(version: 20150319222409) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "contacts", force: true do |t|
     t.integer "profile_id"
@@ -30,8 +33,8 @@ ActiveRecord::Schema.define(version: 20140505211933) do
     t.string  "project_name"
     t.string  "role"
     t.string  "company"
-    t.date    "start_year"
-    t.date    "end_year"
+    t.integer "start_year"
+    t.integer "end_year"
     t.integer "profile_id"
   end
 

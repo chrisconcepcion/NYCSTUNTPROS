@@ -265,7 +265,14 @@ describe User do
 			user4 = Fabricate(:female_stunt_actor, middle_name: 'South Park')
 			expect(User.search_actors_by_full_name('George', 'female')).to eq []
 		end
-		it "returns array of videos that title matches the keyword" do
+		it "returns array of users when names matches the keyword" do
+			user1 = Fabricate(:male_stunt_actor, last_name: 'Batman 1')
+			user2 = Fabricate(:male_stunt_actor, first_name: 'Batman 2' )
+			user3 = Fabricate(:female_stunt_actor, first_name: 'Monk')
+			user4 = Fabricate(:female_stunt_actor, middle_name: 'South Park')
+			expect(User.search_actors_by_full_name("batman", "male")).to eq [user2, user1]
+		end
+		it "returns array of users when names matches the keyword" do
 			user1 = Fabricate(:male_stunt_actor, last_name: 'Batman 1')
 			user2 = Fabricate(:male_stunt_actor, first_name: 'Batman 2' )
 			user3 = Fabricate(:female_stunt_actor, first_name: 'Monk')

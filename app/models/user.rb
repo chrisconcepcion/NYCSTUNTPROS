@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   validates :roles, :inclusion => %w(actor coordinator both)
 	validates :date_of_birth, presence: true
   before_create { generate_token(:auth_token) }
-	before_save :populate_full_name
+	before_save :populate_full_name, :case_sensitive => false
 	
   def generate_token(column)
       self[column] = SecureRandom.urlsafe_base64
@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
 		if keyword.blank? || ["male","female"].exclude?(gender)
 			[]
 		else
-			self.where("roles in (?) and gender = ? and full_name LIKE ?",["actor", "both"], "#{gender}","%#{keyword.downcase}%").order('created_at DESC')
+			self.where("roles in (?)  and gender = ? and full_name ILIKE ?",["actor", "both"], "#{gender}","%#{keyword}%").order('created_at DESC')
 		end
 	end
 	

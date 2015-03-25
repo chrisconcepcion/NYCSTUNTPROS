@@ -6,7 +6,6 @@ gem 'pry'
 source 'https://rails-assets.org'
 gem "rails-assets-angular"
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -40,6 +39,9 @@ gem 'paperclip', '4.1'
 gem 'cocaine'
 gem 'angularjs-rails'
 gem 'angular_rails_csrf'
+gem 'pg'
+gem 'foreman'
+gem 'unicorn'
 
 group :development do
     gem "letter_opener"
@@ -70,6 +72,10 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :production do
+	gem 'rails_12factor'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
@@ -81,3 +87,5 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+ruby "2.0.0"

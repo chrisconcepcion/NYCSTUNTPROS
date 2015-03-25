@@ -42,6 +42,8 @@ gem 'angular_rails_csrf'
 gem 'pg'
 gem 'foreman'
 gem 'unicorn'
+gem 'sinatra', :require => nil
+
 
 group :development do
     gem "letter_opener"

@@ -88,4 +88,6 @@ StuntRails::Application.routes.draw do
 	
 	resources :contacts, only: [:show, :update]
 	resources :employments, only: [:show, :update]
+	require 'sidekiq/web'
+	mount Sidekiq::Web => '/sidekiq'
 end

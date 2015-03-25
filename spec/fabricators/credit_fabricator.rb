@@ -3,6 +3,6 @@ Fabricator(:credit) do
   project_name { Faker::Name.name }
   role { Faker::Name.name }
   company { Faker::Name.name }
-  start_year 1990
-  end_year 1991
+  start_year { 1990 }
+  end_year { 1991 }
 end

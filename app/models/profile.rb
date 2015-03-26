@@ -7,7 +7,7 @@ class Profile < ActiveRecord::Base
 	accepts_nested_attributes_for :employment
 	accepts_nested_attributes_for :credits
   validates :user_id, presence: true
-  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+	attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 	has_attached_file :photo, :styles => { :small => "190x220!", :large => "570x660" },
 	:processors => [:cropper]
 	validates_attachment_size :photo, :less_than => 5.megabytes
@@ -22,6 +22,7 @@ class Profile < ActiveRecord::Base
 	validates :hair_length, :inclusion => %w(short medium long), allow_nil: true, :allow_blank => true
 	validates :ethnicity, :inclusion => %w(asian biracial indian hispanic middle_eastern native_american pacific_islander caucasian other), allow_nil: true,:allow_blank => true
 	
+
  
   def cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?

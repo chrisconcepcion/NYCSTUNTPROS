@@ -43,7 +43,7 @@ gem 'pg'
 gem 'foreman'
 gem 'unicorn'
 gem 'sinatra', :require => nil
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 
 group :development do
     gem "letter_opener"

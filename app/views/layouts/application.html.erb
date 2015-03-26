@@ -30,7 +30,7 @@
           <li class="has-dropdown">
           	<li><%= link_to "Profile", profile_path(current_user.profile.id) %></li>
 						<li><%= link_to "Edit Profile", edit_profile_path(current_user.profile.id) %></li>
-        		<li><a href="logout">Logout</a></li>
+        		<li><%= link_to "Logout", logout_path %></li>
 					</li>
 				</ul>
       <% else %>
@@ -41,19 +41,19 @@
 
     <!-- Left Nav Section -->
     <ul class="left">
-      <li><a href="">Stunt Coordinators</a></li>
+      <li><%= link_to "Stunt Coordinators", stunt_coordinator_index_path %></li>
       <li><a href="#"></a></li>
       <li class="has-dropdown">
-        <a href="#">Stunt Actors</a>
+        <a>Stunt Actors</a>
         <ul class="dropdown">
           <li class="has-dropdown">
-          <a href="#">Men</a>
+          <a>Men</a>
           <ul class="dropdown">
             <li><%= link_to "Search", advanced_search_male_stunt_actor_index_path %></li>
             <li><%= link_to "View All", male_stunt_actor_index_path %></li>
           </ul>
           <li class="has-dropdown">
-          <a href="#">Women</a>
+          <a>Women</a>
           <ul class="dropdown">
             <li><%= link_to "Search", advanced_search_female_stunt_actor_index_path %></li>
             <li><%= link_to "View All", female_stunt_actor_index_path %></li>

@@ -24,11 +24,26 @@
 			<li>
 				<%= link_to profile_path(id: user.profile.id) do %>
 				<div class="profile">
-  				<%= image_tag "tempProfileSmall.png" %>
+  				<% if user.profile.photo_updated_at.blank?%>
+						<% if user.gender == "male" %>
+					  				<%= image_tag "male.jpg" %>
+						<% else %>
+										<%= image_tag "female.jpg" %>
+						<% end %>
+
+					<% else %>
+					  				<%= image_tag user.profile.photo(:small) %>
+
+					<% end %>
+  				
 					<h6><%= user.full_name %></h6>
-					<p><%= (user.profile.height/12).to_s + " feet"  %> 	<%=user.profile.weight.to_s + " pounds" %></p>
+					<% if user.profile.height && user.profile.weight %>
+						<p><%= (user.profile.height/12).to_s + " feet"  %> 	<%=user.profile.weight.to_s + " pounds" %></p>
+					<% end %>
 					<h6>Contact Information</h6>
-					<p><%=user.profile.contact.city + ", " + user.profile.contact.state %>
+					<% if user.profile.contact.city && user.profile.contact.state %>
+						<p><%=user.profile.contact.city + ", " + user.profile.contact.state %>
+					<% end %>
 					<p><%=user.profile.contact.phone_number %></p>
 					<p><%= user.profile.contact.email %></p>
 				</div>

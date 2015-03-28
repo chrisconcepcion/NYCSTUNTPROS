@@ -16,7 +16,7 @@
 		<h3>Profile Picture</h3>
 		<br />
 		<h5>Current Profile Picture</h5>
-		<div style="width:195px; height:220px; border: 1px solid black; overflow:hidden">
+		<div style="width:190px; height:220px; border: 1px solid black; overflow:hidden">
 		<% if @profile.photo_updated_at.blank?%>
 						<% if @profile.user.gender == "male" %>
 					  				<%= image_tag "male.jpg" %>

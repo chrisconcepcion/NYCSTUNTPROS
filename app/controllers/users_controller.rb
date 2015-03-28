@@ -29,7 +29,7 @@ before_action :require_owner, only: [:edit, :update]
 			flash[:notice] = "Your account has been updated."
 		else
 			flash[:error] = update.error_message
-			render :new
+			redirect_to edit_user_path
 		end
 	end
 	

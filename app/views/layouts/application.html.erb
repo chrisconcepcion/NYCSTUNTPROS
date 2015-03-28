@@ -30,6 +30,7 @@
           <li class="has-dropdown">
           	<li><%= link_to "Profile", profile_path(current_user.profile.id) %></li>
 						<li><%= link_to "Edit Profile", edit_profile_path(current_user.profile.id) %></li>
+						<li><%= link_to "Edit Account", edit_user_path(current_user.id) %></li>
         		<li><%= link_to "Logout", logout_path %></li>
 					</li>
 				</ul>

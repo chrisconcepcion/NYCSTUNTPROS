@@ -6,8 +6,8 @@
 <%= simple_form_for @user do |f| %>
   <div class="large-6 columns">
       <%= f.input :email, required: false %>
-      <%= f.input :password, label: "Password" %>
-			<%= f.input :password_confirmation, label: "Password" %>
+      <%= f.input :password, label: "Password", hint: "Must be 6 or more characters" %>
+			<%= f.input :password_confirmation, label: "Password Confirmation" %>
       <%= f.input :first_name, label: "First Name" %>
       <%= f.input :last_name, label: "Last Name" %>
       <%= f.input :gender, label: "Gender", :as => :radio_buttons, collection: [["Male", "male"],["Female", "female"]], :item_wrapper_class => 'inline' %>

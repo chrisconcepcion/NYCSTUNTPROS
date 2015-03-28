@@ -96,7 +96,7 @@ describe UsersController do
 				update = double(:update, successful?: false, error_message: "lol")
 				UpdateUser.any_instance.should_receive(:update_user).and_return(update)
 				post :update, id: current_user.id, user: { first_name: "name1", middle_name: "name2", last_name: "name3", email:"changedemail@example.com", password: "not_working", password_confirmation: "badPass", roles: "both", gender: "male" }
-				expect(response).to render_template :new
+				expect(response).to redirect_to edit_user_path
 			end
 		end
 	end

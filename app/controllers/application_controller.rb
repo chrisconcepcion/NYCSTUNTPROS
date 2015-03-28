@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
 		end
 	end
 	
+	
 	def require_password_reset_token
 		user = User.find_by_reset_password_token params[:reset_password_token]
 		redirect_to invalid_token_path unless user && user.reset_password_sent_at

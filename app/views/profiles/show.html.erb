@@ -54,18 +54,45 @@
 	<div class="large-5 large-offset-3 columns end">
 		<h3>Training</h3>
 		<hr />
-		<p><%= "#{@profile.employment.training}" %></p>
+		<% if @profile.employment.training.present? %>
+			<p><%= "#{@profile.employment.training}" %></p>
+		<% else %>
+			<p><i>No training information available.</i></p>
+		<% end %>
 	</div>
 </div>
 <div class="row medium-top-margin medium-bottom-margin profile_show">
 	<div class="large-5 large-offset-3 columns end">
 		<h3>Employment Details</h3>
 		<hr />
-		<p><%="Work History: #{@profile.employment.work_history}" %></p>
-		<p><%="Job Category: #{@profile.employment.job_categories}" %></p>
-		<p><%="Willing to work unpaid? #{@profile.employment.work_unpaid}" %></p>
-		<p><%="Authorized to work in the United States? #{@profile.employment.work_unpaid}" %></p>
-		<p><%="Do you have a valid passport? #{@profile.employment.valid_passport}" %></p>
-		<p><%="Prior Job Title(s): #{@profile.employment.past_job_titles}"%></p>
+		<% if @profile.employment.work_history.present? || @profile.employment.job_categories.present? || @profile.employment.past_job_titles.present? || @profile.employment.primary_citizenship.present? || @profile.employment.work_unpaid.present? || @profile.employment.united_states_citizenship.present? || @profile.employment.valid_passport.present? %>
+			<p><%="Work History: #{@profile.employment.work_history}" %></p>
+			<p><%="Job Category: #{@profile.employment.job_categories}" %></p>
+			<p><%="Willing to work unpaid? #{convert_true_false_to_yes_no(@profile.employment.work_unpaid)}" %></p>
+			<p><%="Primary Citizenship: #{@profile.employment.primary_citizenship}" %></p>
+			<p><%="Authorized to work in the United States? #{@profile.employment.united_states_citizenship}" %></p>
+			<p><%="Do you have a valid passport? #{convert_true_false_to_yes_no(@profile.employment.valid_passport)}" %></p>
+			<p><%="Prior Job Title(s): #{@profile.employment.past_job_titles}"%></p>
+		<% else %>
+			<p>No employment information available.</p>
+		<% end %>
 	</div>
+</div>
+<div class="row medium-top-margin medium-bottom-margin profile_show">
+	<div class="large-5 large-offset-3 columns end">
+		<h4>Credits</h4>
+				<hr />
+	<% if @profile.credits.any? %>	
+	<% @profile.credits.each do |credit| %>
+		<div class="credit">
+			<h5><%= credit.media_category.capitalize %></h5>
+			<p><%= credit.role %> <i>in</i> <span class="creditTitle">"<%= credit.project_name%>"</span> (<%=credit.start_year.to_s+"/"+credit.end_year.to_s%>) <i>by</i> <span><%= credit.company %></span></p>
+			<br />
+			</div>
+	<% end %>
+		<% else %>
+			<p><i>No credits yet!</i></p>
+		<% end %>
+				</div>
+
 </div>
